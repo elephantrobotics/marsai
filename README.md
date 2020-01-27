@@ -3,7 +3,15 @@ This is the source code for MarsCat AI. The robotic pet cat that you can control
 
 # Structure 
 - ai: including action, ai and data receiver from different sensors, vision and voice
-- sensor: touch sensor, distance sensor
+- sensor: touch sensor, distance sensor and gyro sensor
 - vision: human_recognition, object_recognition, brightness and QR code recognition
 - voice: command recognition
 - library: python API to control marscat move
+
+# Sensors
+
+# Actions
+- eyedisplay
+- sound
+- movement
+  
