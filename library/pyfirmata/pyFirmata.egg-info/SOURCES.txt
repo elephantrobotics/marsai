@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.rst
+requirements.txt
+setup.cfg
+setup.py
+pyFirmata.egg-info/PKG-INFO
+pyFirmata.egg-info/SOURCES.txt
+pyFirmata.egg-info/dependency_links.txt
+pyFirmata.egg-info/not-zip-safe
+pyFirmata.egg-info/requires.txt
+pyFirmata.egg-info/top_level.txt
+pyfirmata/__init__.py
+pyfirmata/boards.py
+pyfirmata/mockup.py
+pyfirmata/pyfirmata.py
+pyfirmata/util.py
