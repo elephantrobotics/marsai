@@ -16,16 +16,16 @@ This is used to auto-start all the services when boost the Raspberry PI. You can
 
 ## Enable
 Enable the service and the service will auto-run when next boot.
-`sudo systemctl enable ***any-service***`
+`sudo systemctl enable *any-service* `
 
 ## Disable
 Disable the service and the service will not run when next boot.
-`sudo systemctl disable ***any-service***`
+`sudo systemctl disable *any-service* `
 
 ## Start
 Start the service.
-`sudo systemctl start ***any-service***`
+`sudo systemctl start *any-service* `
 
 ## Stop / Pause and Shutdown
 Stop the existing service.
-`sudo systemctl stop ***any-service***`
+`sudo systemctl stop *any-service* `
