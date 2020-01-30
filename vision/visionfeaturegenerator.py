@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+# Copyright (c) 2019 Elephant Robotics, Inc. All rights reserved.
+# File name:    visiongenerator.py
+# Author:       Leonid, Joey
+# Version:      1.01            
+# Date:         20, Jan, 2020
+# Description:  vision feature generator
+# Using this MarsAI source code is subject to the terms and conditions 
+# of Apache 2.0 License. Check LICENSE for more information
+
 import random
 import socket
 import time
@@ -23,21 +35,19 @@ class VisionFeatureGenerator:
             start_time = time.time()
             
             features = []
-            #brightness = self.vision.get_brightness()
-            #if brightness is not None:
-            #    features.append(brightness)
-            #qrcode = self.vision.get_qrcode()
-            #if qrcode is not None:
-            #    features.append(qrcode)
+            brightness = self.vision.get_brightness()
+            if brightness is not None:
+                features.append(brightness)
+            qrcode = self.vision.get_qrcode()
+
+            if qrcode is not None:
+                features.append(qrcode)
             
             obj = self.vision.get_moving_object()
-            #print (obj)
             
             if obj is not None:
                 features.append(obj)
             face = self.vision.get_face_recognition()
-            
-            #print (face)
             
             if face is not None:
                 features.append(face)
@@ -57,8 +67,8 @@ class VisionFeatureGenerator:
                 sock.close()
 
             end_time = time.time()
-            #if (end_time - start_time) < 0.2:
-            #    time.sleep(end_time - start_time)
+            if (end_time - start_time) < 0.2:
+                time.sleep(end_time - start_time)
 
     def generate_vision_feature(self):
         ft = Feature()
@@ -74,7 +84,7 @@ class VisionFeatureGenerator:
 
     def simulate_data_flow_forever(self):
         while True:
-            #FIXME: cannot put connect() outside loop ???
+            #FIXME: cannot put connect() outside loop 
             #FIXME: sendall() throws exception BrokenPipeError: [Errno 32] Broken pipe
             while True:
                 try:
@@ -93,6 +103,6 @@ class VisionFeatureGenerator:
             time.sleep(random.uniform(0.1, 2.0))
             sock.close()
 
-if __name__ == "__main__":
+def test_vision():
     VisionFeatureGenerator().start_vision()
-    #VisionFeatureGenerator().simulate_data_flow_forever()
+

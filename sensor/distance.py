@@ -1,4 +1,14 @@
-# file
+#!/usr/bin/env python
+# encoding: utf-8
+
+# Copyright (c) 2019 Elephant Robotics, Inc. All rights reserved.
+# File name: 	ditance.py
+# Author:		Leonid, Joey
+# Version:		1.01			
+# Date:			20, Jan, 2020
+# Description:	distance sensor source code 
+# Using this MarsAI source code is subject to the terms and conditions 
+# of Apache 2.0 License. Check LICENSE for more information
 
 import time
 from VL530L0XP.python import VL53L0X
@@ -38,12 +48,8 @@ class Distance:
 		else:
 			return distance
 
-''' simple test sensor
-
-if __name__ == '__main__':
+def test_distance():
 	ds = Distance()
 	while 1:
 		print (ds.get_distance())
 		time.sleep(0.1)
-
-'''

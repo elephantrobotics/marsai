@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+# Copyright (c) 2019 Elephant Robotics, Inc. All rights reserved.
+# File name:    pythonapi.py
+# Author:       Leonid, Joey
+# Version:      1.01            
+# Date:         20, Jan, 2020
+# Description:  python api to microcontroller 
+# Using this MarsAI source code is subject to the terms and conditions 
+# of Apache 2.0 License. Check LICENSE for more information
+
 from touch import Touch
 from distance import Distance
 

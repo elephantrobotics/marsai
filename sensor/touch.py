@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+# Copyright (c) 2019 Elephant Robotics, Inc. All rights reserved.
+# File name:    touch.py
+# Author:       Leonid, Joey
+# Version:      1.01            
+# Date:         20, Jan, 2020
+# Description:  touch sensor source code  
+# Using this MarsAI source code is subject to the terms and conditions 
+# of Apache 2.0 License. Check LICENSE for more information
+
 import RPi.GPIO as GPIO
 import time
 
@@ -82,18 +94,11 @@ class Touch:
                 return blank
                 
         return input_signal
-        
-        
-        
-
-''' simple test
 
 
+def test_touch():
+    tc = Touch()
+    while 1:
+            print (tc.get_touch())
+            time.sleep(0.1)
 
-tc = Touch()
-while 1:
-        print (tc.get_touch())
-        time.sleep(0.1)
-
-
-'''

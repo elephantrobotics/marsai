@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+# Copyright (c) 2019 Elephant Robotics, Inc. All rights reserved.
+# File name: 	vision.py
+# Author:		Leonid, Joey
+# Version:		1.01			
+# Date:			20, Jan, 2020
+# Description:	vision source code 
+# Using this MarsAI source code is subject to the terms and conditions 
+# of Apache 2.0 License. Check LICENSE for more information
+
 import cv2
 import numpy as np
 import os
@@ -51,7 +60,7 @@ class Vision:
 			Vision.get_frame.img = cv2.flip(self.cam.read()[1], 0)
 		return Vision.get_frame.img
 
-	# will return 0~150
+	# Brightness: will return 0~150
 	def get_brightness(self):
 		# get brightness
 		img = self.get_frame()
@@ -69,6 +78,7 @@ class Vision:
 		ft.data = brightness_data
 		return ft
 
+	# QR code: return qr code data
 	def get_qrcode(self):
 		img = self.get_frame()
 		det = cv2.QRCodeDetector()
@@ -89,6 +99,7 @@ class Vision:
 		y_2 = input_c2[1]
 		return math.sqrt((x_1 - x_2)*(x_1 - x_2) + (y_1 - y_2)*(y_1 - y_2))
 
+	# Moving object: return moving object coords
 	def get_moving_object(self):
 		frame0 = cv2.flip(self.cam.read()[1], 0)
 		frame1 = cv2.cvtColor(frame0, cv2.COLOR_BGR2GRAY)
@@ -122,13 +133,6 @@ class Vision:
 					ry = y + int(h / 2)
 					ca = cv2.contourArea(c)
 					
-					# plot contours
-					#cv2.drawContours(frame6, [c], 0, (0, 0, 255), 2)
-					#cv2.rectangle(frame6, (x, y), (x + w, y + h), (0, 255, 0), 2)
-					#cv2.circle(frame6, (cx, cy), 2, (0, 0, 255), 2)
-					#cv2.circle(frame6, (rx, ry), 2, (0, 255, 0), 2)
-					# save target contours
-					
 					targets.append((cx, cy, ca))
 			# make target
 			mx = 0
@@ -142,12 +146,11 @@ class Vision:
 						my = y
 						area = a
 						area_sum += a
-			# plot target
+
 			if self.last_x != -1:
 				self.dis = self.get_moving_distance([mx,my],[self.last_x, self.last_y])
 			if targets :
-				#print ("self.dis" + str(self.dis))
-				#print ("area" + str(area_sum))
+
 				if area_sum < self.MAX_SUM:
 					if 	self.dis < self.MAX_DIS:
 						cv2.circle(frame7, (mx, my), 30, (0, 0, 255, 0), 2)
@@ -160,23 +163,16 @@ class Vision:
 					self.counter = 0
 		# update master
 		self.master = frame2
-		# display
-		#cv2.imshow("Frame0: Raw", frame0)
-		#cv2.imshow("Frame1: Contours", frame1)
-		#cv2.imshow("Frame4: Contours", frame4)
-		#cv2.imshow("Frame5: Contours", frame5)
-		#cv2.imshow("Frame6: Contours", frame6)
-		#cv2.imshow("Frame7: Target", frame7)
-		#cv2.imshow("Frame0: Raw", img)
+
 		# Verify
 		self.counter += 1
 		if self.counter > self.len_count:
 			obj_occu = self.object_count / self.len_count
-			#print ("obj occ" + str(obj_occu))
+
 			self.object_count = 0
 			self.counter = 0
+
 			if obj_occu > self.min_occupy:
-				print ("--------------")
 				_x = copy.deepcopy(self.last_x)
 				_y = copy.deepcopy(self.last_y)
 				obj_coords = [float(_x), float(_y)]
@@ -185,15 +181,17 @@ class Vision:
 				ft.received_time = time.time()
 				ft.timeout = 1.0
 				ft.data = {}
-				ft.data['obj'] = [0,obj_coords]	# 0 means teasers
+				ft.data['obj'] = [0,obj_coords]	
 				return ft
 		# All done 
 		return None
 
+	# still under final development 
 	def get_object_recognition(self):
 		img = self.get_frame()
-		pass # wait for yolo 3?
+		pass 
 
+	# face recognition
 	def get_face_recognition(self):
 		# setups
 		img = self.get_frame()
@@ -233,20 +231,31 @@ class Vision:
 		return ft
 
 
-if __name__ == "__main__":
+def test_vision(test_data):
 	a = Vision()
 
 	while True:
-		#st = time.time()
-		#cv2.imshow("img", a.get_frame())
-		#print(a.get_qrcode())
-		b = a.get_moving_object()
-		#print(b)
-		#print(a.get_face_recognition())
-		#print(a.get_brightness())
+		cv2.imshow("img", a.get_frame())
+		result = None
 
-		#print ('---')
-		#print (time.time() - st)
+		# detect moving object
+		if test_data == 1:
+			result = a.get_moving_object()
+
+		# detect face
+		elif test_data == 2:
+			result = a.get_face_recognition()
+
+		# detect brightness
+		elif test_data == 3:
+			result = a.get_brightness()
+
+		# detect qrcode
+		elif test_data == 4:
+			result = a.get_qrcode()
+
+		print (result)
+
 		k = cv2.waitKey(1) & 0xff
 		if k == 27:
 			break

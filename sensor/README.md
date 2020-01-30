@@ -4,28 +4,10 @@ Copyright (c) 2019 Elephant Robotics, Inc. All rights reserved.
 Using this MarsAI source code is subject to the terms and conditions of Apache 2.0 License. Check LICENSE for more information
 -->
 
-# Systemmd
+# Sensors
 
-This is used to auto-start all the services when boost the Raspberry PI. You can enable, disable, start or stop four different service by using following code:
+Sensors includes distance sensor and touch sensor. The distance can detect up to 3 meter length. The touch sensor includes 6 touch sensors: 3 in the head and 3 in the back. Gyro sensor commnication is embedded in API in library/pyfirmata.
 
-## Service
- * mars-main
- * mars-vision
- * mars-voice
- * mars-sensors
+## setup SPI and I2C
 
-## Enable
-Enable the service and the service will auto-run when next boot.
-`sudo systemctl enable ***any-service***`
-
-## Disable
-Disable the service and the service will not run when next boot.
-`sudo systemctl disable ***any-service***`
-
-## Start
-Start the service.
-`sudo systemctl start ***any-service***`
-
-## Stop / Pause and Shutdown
-Stop the existing service.
-`sudo systemctl stop ***any-service***`
+Input `sudo raspi-config` in terminal to enable SPI and I2C communication for enable distance and touch sensors.  
