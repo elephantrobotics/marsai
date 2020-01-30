@@ -23,7 +23,8 @@ if circles is not None:
         # draw the circle in the output image, then draw a rectangle
         # corresponding to the center of the circle
         cv2.circle(output, (x, y), r, (0, 255, 0), 4)
-        cv2.rectangle(output, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
+        cv2.rectangle(output, (x - 5, y - 5),
+                      (x + 5, y + 5), (0, 128, 255), -1)
 
     # show the output image
     cv2.imshow("output", np.hstack([image, output]))
