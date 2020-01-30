@@ -443,7 +443,7 @@ class Board(object):
         self.send_sysex(MARS,data)
         pass
 
-    def setLegAngle(self, leg_no, servo_no, angle, speed): # 0x14 perfect
+    def setLegAngle(self, leg_no, servo_no, angle, speed): # 0x14
 
         data = [SET_LEG_ANGLE]
         data += [leg_no]
@@ -502,7 +502,6 @@ class Board(object):
         data = [SET_RUN]
         data += self.getSpeedBytesData(speed)
         self.send_sysex(MARS, data)
-
         pass
 
     def setTurn(self, direction, speed): # 0x32

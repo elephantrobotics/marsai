@@ -23,5 +23,8 @@ Pyfirmata is the API for controlling micro-controller of all 16 servos and gyro 
  * `setWalk(speed)` : `speed`: 0.0 ~ 1.0;
  * `setStop()` :
 
+## Examples
 
+Check example file to test the commnucation between python to micro-controller.
+ * important: the MarsCat is needed to test. 
 
