@@ -203,9 +203,9 @@ class Vision:
 		gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 		faces = self.face_detector.detectMultiScale(
 			gray,
-			scaleFactor=1.1,    #1.1
-			minNeighbors=3, 	#3
-			minSize=(20, 20), 	#100
+			scaleFactor=1.1,
+			minNeighbors=3, 
+			minSize=(20, 20),
 		)
 
 		for (x, y, w, h) in faces:
