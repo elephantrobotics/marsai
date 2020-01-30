@@ -1,0 +1,103 @@
+Language model created by QuickLM on Tue Dec 24 22:42:16 EST 2019
+Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
+
+The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
+
+The code that was used to produce this language model is available in Open Source.
+Please visit http://www.speech.cs.cmu.edu/tools/ for more information
+
+The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
+This model based on a corpus of 15 sentences and 23 words
+
+\data\
+ngram 1=23
+ngram 2=36
+ngram 3=21
+
+\1-grams:
+-0.8325 </s> -0.3010
+-0.8325 <s> -0.2319
+-2.0086 ARE -0.2968
+-2.0086 AT -0.2968
+-2.0086 BE -0.2968
+-2.0086 CAT -0.2319
+-2.0086 COME -0.2968
+-2.0086 HELLO -0.2319
+-2.0086 HERE -0.2319
+-2.0086 HOW -0.2968
+-2.0086 KITTEN -0.2319
+-2.0086 LOOK -0.2968
+-2.0086 MARS -0.2319
+-2.0086 ME -0.2319
+-2.0086 MIMI -0.2319
+-2.0086 QUIET -0.2319
+-2.0086 RELAX -0.2319
+-2.0086 RUN -0.2319
+-2.0086 SIT -0.2319
+-2.0086 STOP -0.2319
+-2.0086 TURN -0.2319
+-2.0086 WALK -0.2319
+-2.0086 YOU -0.2319
+
+\2-grams:
+-1.4771 <s> BE 0.0000
+-1.4771 <s> CAT 0.0000
+-1.4771 <s> COME 0.0000
+-1.4771 <s> HELLO 0.0000
+-1.4771 <s> HOW 0.0000
+-1.4771 <s> KITTEN 0.0000
+-1.4771 <s> LOOK 0.0000
+-1.4771 <s> MARS 0.0000
+-1.4771 <s> MIMI 0.0000
+-1.4771 <s> RELAX 0.0000
+-1.4771 <s> RUN 0.0000
+-1.4771 <s> SIT 0.0000
+-1.4771 <s> STOP 0.0000
+-1.4771 <s> TURN 0.0000
+-1.4771 <s> WALK 0.0000
+-0.3010 ARE YOU 0.0000
+-0.3010 AT ME 0.0000
+-0.3010 BE QUIET 0.0000
+-0.3010 CAT </s> -0.3010
+-0.3010 COME HERE 0.0000
+-0.3010 HELLO </s> -0.3010
+-0.3010 HERE </s> -0.3010
+-0.3010 HOW ARE 0.0000
+-0.3010 KITTEN </s> -0.3010
+-0.3010 LOOK AT 0.0000
+-0.3010 MARS </s> -0.3010
+-0.3010 ME </s> -0.3010
+-0.3010 MIMI </s> -0.3010
+-0.3010 QUIET </s> -0.3010
+-0.3010 RELAX </s> -0.3010
+-0.3010 RUN </s> -0.3010
+-0.3010 SIT </s> -0.3010
+-0.3010 STOP </s> -0.3010
+-0.3010 TURN </s> -0.3010
+-0.3010 WALK </s> -0.3010
+-0.3010 YOU </s> -0.3010
+
+\3-grams:
+-0.3010 <s> BE QUIET
+-0.3010 <s> CAT </s>
+-0.3010 <s> COME HERE
+-0.3010 <s> HELLO </s>
+-0.3010 <s> HOW ARE
+-0.3010 <s> KITTEN </s>
+-0.3010 <s> LOOK AT
+-0.3010 <s> MARS </s>
+-0.3010 <s> MIMI </s>
+-0.3010 <s> RELAX </s>
+-0.3010 <s> RUN </s>
+-0.3010 <s> SIT </s>
+-0.3010 <s> STOP </s>
+-0.3010 <s> TURN </s>
+-0.3010 <s> WALK </s>
+-0.3010 ARE YOU </s>
+-0.3010 AT ME </s>
+-0.3010 BE QUIET </s>
+-0.3010 COME HERE </s>
+-0.3010 HOW ARE YOU
+-0.3010 LOOK AT ME
+
+\end\
