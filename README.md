@@ -11,25 +11,37 @@ This is the source code for MarsCat AI. The robotic pet cat that you can control
 ## Structure 
 
 This source code consists of:
-	* ai: including action(eyedisplay, sound, movements), ai and data receiver from different sensors, vision and voice
-	* sensor: touch sensor, distance sensor and gyro sensor
-	* vision: human_recognition, object_recognition, brightness and QR code recognition
-	* voice: command recognition
-	* library: python API to control marscat move
+ * ai: including action(eyedisplay, sound, movements), ai and data receiver from different sensors, vision and voice
+ * sensor: touch sensor, distance sensor and gyro sensor
+ * vision: human_recognition, object_recognition, brightness and QR code recognition
+ * voice: command recognition
+ * library: python API to control marscat move
 
 ## AI
 
+The marsAI is based on general AI process flow:
+ *
 
   
 # Code
 
-Most of the code is programmed by Python in 
+All code is programmed by Python 3.6. If only python API is used to control MarsCat run, walk, turn and each jonit's angle, then python 2.7 and python 3 both can be used. 
+
+The code style is under [PEP 8 Style](https://www.python.org/dev/peps/pep-0008/). If you want to contribute, please code by this style.
 
 
-# Platform
+# Platform and Evironment 
 
-The source code is runing under Raspberry PI B+ 
+The source code is runing under Raspberry PI B (embeded WIFI and Bluetooth). The environment is [Raspbian : Kernal 4.19](https://www.raspberrypi.org/downloads/raspbian/) 
 
 # Libraries
 
 Pre-installed libraries includes OpenCV 3, Pocketsphinx, Pyfirmata.
+
+# Quickstart and Examples
+
+In construction now...
+
+# Contact
+
+The code is managed by Elephant Robotics INC. Email support@elephantrobotics.com to get in touch with our software teamm 
