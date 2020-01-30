@@ -16,16 +16,16 @@ This is used to auto-start all the services when boost the Raspberry PI. You can
 
 ## Enable
 Enable the service and the service will auto-run when next boot.
-`sudo systemctl enable `*any-service* 
+example: `sudo systemctl enable mars-main ` 
 
 ## Disable
 Disable the service and the service will not run when next boot.
-`sudo systemctl disable `*any-service* 
+example: `sudo systemctl disable mars-main `
 
 ## Start
 Start the service.
-`sudo systemctl start `*any-service* 
+example: `sudo systemctl start mars-main `
 
 ## Stop / Pause and Shutdown
 Stop the existing service.
-`sudo systemctl stop `*any-service* 
+example: `sudo systemctl stop mars-main `
