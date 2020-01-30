@@ -6,7 +6,10 @@ Using this MarsAI source code is subject to the terms and conditions of Apache 2
 
 # Sensors
 
-Sensors includes distance sensor and touch sensor. The distance can detect up to 3 meter length. The touch sensor includes 6 touch sensors: 3 in the head and 3 in the back. Gyro sensor commnication is embedded in API in library/pyfirmata.
+Sensors includes distance sensor and touch sensor. 
+ * distance sensor : The distance can detect up to 3 meter length. 
+ * touch sensors : The touch sensor includes 6 touch sensors: 3 in the head and 3 in the back. 
+ * gyro sensor: Gyro sensor commnication is embedded in API in library/pyfirmata.
 
 ## setup SPI and I2C
 
