@@ -32,12 +32,11 @@ All code is programmed by Python 3.6. If only python API is used to control Mars
 
 The code style is under [PEP 8 Style](https://www.python.org/dev/peps/pep-0008/). If you want to contribute, please code by this style.
 
-
-# Platform and Environment 
+## Platform and Environment 
 
 All code is running in Raspberry PI B (embedded WIFI and Bluetooth). The operating system environment is [Raspbian: Kernel 4.19](https://www.raspberrypi.org/downloads/raspbian/) 
 
-# Libraries
+## Libraries
 
 Pre-installed libraries includes OpenCV 3, Pocketsphinx, Pyfirmata.
 
