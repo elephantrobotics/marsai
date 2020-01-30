@@ -26,8 +26,6 @@ The marsAI is based on general AI process flow:
  * **behaviour** : Generate the right behaviour from model to behaviour based on energy consumption, last behaviour and other information.
  * **action** : The action from the behaviour, which may includes sound, body movement and eye-display.
 
-
-  
 # Code
 
 All code is programmed by Python 3.6. If only python API is used to control MarsCat run, walk, turn and each jonit's angle, then python 2.7 and python 3 both can be used. 
