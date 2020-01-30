@@ -46,4 +46,4 @@ In construction now...
 
 # Contact
 
-The code is managed by Elephant Robotics INC. Email support@elephantrobotics.com to get in touch with our software teamm 
+The code is managed by Elephant Robotics INC. Email support@elephantrobotics.com to get in touch with our software team. Check www.elephantrobotics.com for more information.  
