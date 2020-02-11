@@ -6,7 +6,7 @@ Using this MarsAI source code is subject to the terms and conditions of Apache 2
 
 # Pyfirmata
 
-Pyfirmata is the API for controlling micro-controller of all 16 servos and gyro sensor. You can use the it to commnicate with each servo motor and control marscat move, run and turn. 
+Pyfirmata is the API for controlling micro-controller of all 16 servos and gyro sensor. You can use it to commnicate with each servo motor and control MarsCat move, run and turn.
 
 ## API
  * `setTailAngle(servo_no, angle, speed)` : `servo_no`: 1 or 2; `speed`: 0.0 ~ 1.0;
@@ -26,5 +26,4 @@ Pyfirmata is the API for controlling micro-controller of all 16 servos and gyro 
 ## Examples
 
 Check example file to test the commnucation between python to micro-controller.
- * important: the MarsCat is needed to test. 
-
+ * important: the MarsCat is needed to test.

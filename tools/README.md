@@ -6,7 +6,7 @@ Using this MarsAI source code is subject to the terms and conditions of Apache 2
 
 # Systemmd
 
-This is used to auto-start all the services when boost the Raspberry PI. You can enable, disable, start or stop four different service by using following code:
+This is used to auto-start all the services when boot the Raspberry Pi. You can enable, disable, start or stop four different services by using following code:
 
 ## Service
  * mars-main
@@ -15,11 +15,11 @@ This is used to auto-start all the services when boost the Raspberry PI. You can
  * mars-sensors
 
 ## Enable
-Enable the service and the service will auto-run when next boot.
+Enable the service and the service will auto-run with next boot.
 example: `sudo systemctl enable mars-main ` 
 
 ## Disable
-Disable the service and the service will not run when next boot.
+Disable the service and the service will not auto-run with next boot.
 example: `sudo systemctl disable mars-main `
 
 ## Start

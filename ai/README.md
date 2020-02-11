@@ -7,7 +7,7 @@ Using this MarsAI source code is subject to the terms and conditions of Apache 2
 # ai
 The source code is still under development, it will be published when it is ready.
 
-## Strcutre 
+## Structure
 The ai consist of:
  * feature
  * modelclassifier
@@ -16,8 +16,7 @@ The ai consist of:
  * action
 
 ## Action
-Action consist of 
+Action consist of
  * eyedisplay
  * movement
  * sound
-

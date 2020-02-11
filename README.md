@@ -42,8 +42,8 @@ Pre-installed libraries includes OpenCV 3, Pocketsphinx, Pyfirmata.
 
 # Contrubution Guidelines
 
- * First fork and clone this repository
- * Then modify code
+ * Fork and clone this repository
+ * Modify code
  * Create pull request when ready
 
 # Contact
