@@ -12,7 +12,7 @@
 
 import time
 from VL530L0XP.python import VL53L0X
-
+from ai.actionplanner import ActionPlanner as ap
 
 class Distance:
     def __init__(self):
@@ -36,7 +36,7 @@ class Distance:
         dis = self.tof.get_distance()
         dis = self.verify_distance(dis)
 
-        time.sleep(self.read_time*2)
+        ap.sleep(self.read_time*2)
         return dis
 
     def stop_reading(self):

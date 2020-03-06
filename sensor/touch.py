@@ -12,7 +12,7 @@
 
 import RPi.GPIO as GPIO
 import time
-
+from ai.actionplanner import ActionPlanner as ap
 
 class Touch:
     def __init__(self):
@@ -50,7 +50,7 @@ class Touch:
                 if value[l] == 1:
                     count_times[l] += 1
 
-            time.sleep(0.02)
+            ap.sleep(0.02)
 
         # get real data
         for i in count_times:

@@ -49,7 +49,7 @@ class Iterator(threading.Thread):
         self.daemon = True
 
     def run(self):
-        while 1:
+        while True:
             try:
                 while self.board.bytes_available():
                     self.board.iterate()
