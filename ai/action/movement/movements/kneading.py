@@ -26,20 +26,20 @@ def kneading(mars, times=6):
         mars.setLegAngle(2, 1, -j1_angles, _speed)
         mars.setLegAngle(3, 1, j1_angles, _speed)
         mars.setLegAngle(4, 1, -j1_angles, _speed)
-        sleep(0.2)
+        ap.sleep(0.2)
 
         move_head_tail(mars,1,0)
 
         mars.setLegAngle(leg_num, 2, angle_2_ges1, _speed)
         mars.setLegAngle(leg_num, 3, angle_3_ges1, _speed)
-        sleep(0.6)
+        ap.sleep(0.6)
 
         mars.setLegAngle(leg_num, 2, angle_2_ges2, _speed)
         mars.setLegAngle(leg_num, 3, angle_3_ges2, _speed)
         move_head_tail(mars,1,0)
 
-        sleep(0.6)
+        ap.sleep(0.6)
 
         mars.setLegAngle(leg_num, 2, angle_2_ges1, _speed*0.8)
         mars.setLegAngle(leg_num, 3, angle_3_ges1, _speed*0.8)
-        sleep(0.6)
+        ap.sleep(0.6)
