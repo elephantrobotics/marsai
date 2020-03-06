@@ -1,13 +1,9 @@
- # -*- coding:UTF-8 -*-
-
 import spidev
-
 import RPi.GPIO as GPIO
-
-import time
-
 import threading
 import copy
+
+from ai.actionplanner import ActionPlanner as ap
 
 #SSD1351
 SSD1351_WIDTH               = 128 #128
@@ -208,7 +204,7 @@ def Draw_Pixel(x, y):
     Write_Datas(color_byte)
 
 def Delay(x):
-    time.sleep(x / 1000.0)
+    ap.sleep(x / 1000.0)
 	
 def Device_Init():
     OLED_CS(0)

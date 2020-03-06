@@ -1,12 +1,10 @@
 import numpy as np
-from time import sleep
 from ai.action.movement.movements.poweron import *
 from ai.action.movement.movements.basic import *
-
+from ai.actionplanner import ActionPlanner as ap
 
 def main(mars, times=12):
     zhaocai(mars, times)
-
 
 def zhaocai(mars, times):
     mars.setHeadAngle(1, -50, 0.5)  # 低头
@@ -48,7 +46,7 @@ def zhaocai(mars, times):
     get_rand_delay_time(1, 1.2)
 
     mars.setHeadAngle(1, 10, 0.5)
-    sleep(1)
+    ap.sleep(1)
 
     a = np.random.normal(0, 1)
     if a > 0:
@@ -61,7 +59,7 @@ def zhaocai(mars, times):
     rand_speed_five = get_rand_speed(0.3, 0.6)
     mars.setLegAngle(leg_num, 1, 0, rand_speed_five)
     mars.setLegAngle(leg_num, 2, 80, rand_speed_five)
-    sleep(1)
+    ap.sleep(1)
 
     for i in range(times):
         leg_angle = int(np.random.uniform(0, 81))

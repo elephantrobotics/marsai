@@ -1,12 +1,12 @@
 import cv2
-import time
 import copy
+import random
 
 import action.eyedisplay.OLED_Driver as OLED
 
 from PIL import Image, ImageDraw, ImageFont
 
-import random
+from ai.actionplanner import ActionPlanner as ap
 
 DEFAULT_SP = 0.01   # default speed / time seg
 ENJOY_SP = 0.06
@@ -106,7 +106,7 @@ class EyeDisplay:
             while i < sz:
                 self.display_eye(ls[i])
                 i+=1
-                time.sleep(timesleep)
+                ap.sleep(timesleep)
            
     def enjoy(self):
         a = random.random()
@@ -116,7 +116,7 @@ class EyeDisplay:
         if a > 0.35:
             self.eye_move_to(NEARLY_CLOSE, ENJOY_SP)
             self.eye_move_to(CLOSE, ENJOY_SP)
-        time.sleep(b)
+        ap.sleep(b)
         
     def random_move(self):
         a = random.random()
@@ -129,7 +129,7 @@ class EyeDisplay:
         else:
             b = int(random.random()*3)
             self.blink(b)
-        time.sleep(c)
+        ap.sleep(c)
 
 
 
@@ -138,12 +138,12 @@ a = EyeDisplay('blue')
 
 
 a.enjoy()
-time.sleep(2)
+ap.sleep(2)
 
 while 1:
     a.random_move()
     #a.enjoy()
-    time.sleep(0.5)
+    ap.sleep(0.5)
     pass
 
 '''

@@ -1,5 +1,5 @@
 import sys
-import time
+import random
 sys.path.append(".")
 
 from library.pyfirmata.pyfirmata import Arduino
@@ -22,8 +22,7 @@ from ai.action.movement.movements import stretch
 from ai.action.movement.movements import basic
 from ai.action.movement.movements import kneading
 
-import random
-
+from ai.actionplanner import ActionPlanner as ap
 
 class Movements:
     def __init__(self):
@@ -159,8 +158,8 @@ class Movements:
 a = Movements()
 while True:
     a.set_stand()
-    time.sleep(1)
+    ap.sleep(1)
     a.set_obj_attack()
-    time.sleep(2)
+    ap.sleep(2)
 '''
 

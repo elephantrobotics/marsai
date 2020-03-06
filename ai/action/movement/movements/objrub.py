@@ -1,8 +1,7 @@
 import numpy as np
-from time import sleep
 from ai.action.movement.movements.basic import *
 from ai.action.movement.movements.poweron import *
-
+from ai.actionplanner import ActionPlanner as ap
 
 def main(mars, times=5):
     rub_object(mars, times)
@@ -26,7 +25,7 @@ def rub_object(mars, times):
         mars.setLegAngle(4, 1, -15, rand_speed_1)
         mars.setLegAngle(4, 2, 20, rand_speed_1)
         mars.setLegAngle(4, 3, -70, rand_speed_1)
-        sleep(2)
+        ap.sleep(2)
 
         rand_speed_2 = get_rand_speed(0.3, 0.5)
         mars.setHeadAngle(2, get_rand_angle(0), get_rand_speed(0.1, 0.3))
@@ -43,4 +42,4 @@ def rub_object(mars, times):
         mars.setLegAngle(4, 1, 15, rand_speed_2)
         mars.setLegAngle(4, 2, 40, rand_speed_2)
         mars.setLegAngle(4, 3, -40, rand_speed_2)
-        sleep(2)
+        ap.sleep(2)
