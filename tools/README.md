@@ -4,7 +4,7 @@ Copyright (c) 2019 Elephant Robotics, Inc. All rights reserved.
 Using this MarsAI source code is subject to the terms and conditions of Apache 2.0 License. Check LICENSE for more information
 -->
 
-# Systemmd
+# Systemd
 
 This is used to auto-start all the services when boot the Raspberry Pi. You can enable, disable, start or stop four different services by using following code:
 
