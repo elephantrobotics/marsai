@@ -10,21 +10,18 @@
 # Using this MarsAI source code is subject to the terms and conditions
 # of Apache 2.0 License. Check LICENSE for more information
 
-from ai import common
-from ai import feature
-from ai.feature import Feature
-from touch import Touch
-from distance import Distance
-
-from datetime import datetime
-
+import random
 import socket
 import time
-import random
+from datetime import datetime
+from distance import Distance
+from touch import Touch
 
 import sys
 sys.path.append(".")
-
+from ai import common
+from ai import feature
+from ai.feature import Feature
 
 class SensorFeatureGenerator:
     def __init__(self):

@@ -10,21 +10,18 @@
 # Using this MarsAI source code is subject to the terms and conditions
 # of Apache 2.0 License. Check LICENSE for more information
 
-from voice import Voice
-from ai import common
-from ai.feature import Feature
 import random
 import socket
 import time
 import queue
 import threading
-
 from datetime import datetime
 
-# FIXME: dirty hack to import sibling modules (cause python imports do not work)
 import sys
 sys.path.append(".")
-
+from voice import Voice
+from ai import common
+from ai.feature import Feature
 
 class VoiceFeatureGenerator:
     def __init__(self):
