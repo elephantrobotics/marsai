@@ -14,11 +14,11 @@ import random
 import socket
 import time
 from datetime import datetime
-from distance import Distance
-from touch import Touch
 
 import sys
 sys.path.append(".")
+from distance import Distance
+from touch import Touch
 from ai import common
 from ai import feature
 from ai.feature import Feature

@@ -9,7 +9,7 @@
 
 import numpy as np
 from pyfirmata.pyfirmata import Arduino, util
-from ai.actionplanner import ActionPlanner as ap
+import ai.actionplanner
 
 mars = Arduino('/dev/ttyUSB0')
 
@@ -19,22 +19,22 @@ while True:
     # Run
     if input_data == '1':
         mars.setRun(1)        # setRun(speed): speed 0 ~ 100%(1)
-        ap.sleep(3)
+        ai.actionplanner.ActionPlanner.sleep(3)
         mars.setRun(1)
 
     # Walk
     elif input_data == '2':
         mars.setWalk(1)        # setWalk(speed): speed 0 ~ 100%(1)
-        ap.sleep(3)
+        ai.actionplanner.ActionPlanner.sleep(3)
         mars.setWalk(0.2)
 
     # Turn
     elif input_data == '3':
         # setTurn(direction speed): direction 0/1; speed 0 ~ 100%(1)
         mars.setTurn(1, 1)
-        ap.sleep(3)
+        ai.actionplanner.ActionPlanner.sleep(3)
         mars.setTurn(0, 1)
-        ap.sleep(3)
+        ai.actionplanner.ActionPlanner.sleep(3)
         mars.setTurn(0, 0.2)
 
     # Set initial gait
@@ -42,15 +42,15 @@ while True:
         mars.setIniGait(0, 1)  # setIniGait(mode speed)
         # mode 0,1,2,3 for first value : run/ turn/ walk/ balance mode
         # speed 0 ~ 100%(1)
-        ap.sleep(3)
+        ai.actionplanner.ActionPlanner.sleep(3)
         mars.setIniGait(3, 0.3)
-        ap.sleep(3)
+        ai.actionplanner.ActionPlanner.sleep(3)
 
     # Set leg Angle for testing
     elif input_data == '5':  # Set leg Angle
         # setLegAngle(legno, servono, angles, speed)
         mars.setLegAngle(1, 2, -21.65, 1)
-        ap.sleep(3)
+        ai.actionplanner.ActionPlanner.sleep(3)
         mars.setLegAngle(1, 2, 21.65, 0.5)
 
     # Random move head
@@ -67,7 +67,7 @@ while True:
             mars.setHeadAngle(1, head_1_angle, rand_speed)
             mars.setHeadAngle(2, head_2_angle, rand_speed)
 
-            ap.sleep(rand_time)
+            ai.actionplanner.ActionPlanner.sleep(rand_time)
 
     # get leg Angle
     elif input_data == '7':

@@ -1,7 +1,7 @@
 from ai.action.movement.movements.basic import move_head
 from ai.action.movement.movements.poweron import *
 from ai.action.movement.movements.sit import *
-from ai.actionplanner import ActionPlanner as ap
+import ai.actionplanner
 
 def playToy(mars, times=5):
     leg_num = random.choice([1, 2])
@@ -12,7 +12,7 @@ def playToy(mars, times=5):
             mars.setLegAngle(leg_num, 1, 20, get_rand_speed(1, 1))
             mars.setLegAngle(leg_num, 2, 40, get_rand_speed(1, 1))
             mars.setLegAngle(leg_num, 3, 30, get_rand_speed(1, 1))
-            ap.sleep(0.3)
+            ai.actionplanner.ActionPlanner.sleep(0.3)
 
             mars.setLegAngle(leg_num, 1, -20, get_rand_speed(1, 1))
             mars.setLegAngle(leg_num, 2, 40, get_rand_speed(1, 1))

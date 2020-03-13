@@ -7,11 +7,11 @@ from featurequeue import *
 
 from modelclassifier import ModelClassifier
 from behaviourplanner import BehaviourPlanner
-from actionplanner import ActionPlanner
+import ActionPlanner
 
 MC = ModelClassifier()
 BP = BehaviourPlanner()
-AP = ActionPlanner()
+AP = actionplanner.ActionPlanner()
 
 def getRandNum(num_type=0):
     # 0 is for random

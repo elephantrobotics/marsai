@@ -1,31 +1,31 @@
 import random
 from ai.action.movement.movements.poweron import *
 from ai.action.movement.movements.basic import *
-from ai.actionplanner import ActionPlanner as ap
+import ai.actionplanner
 
 def forerake(mars):  # -20 30
     mars.setLegAngle(1, 2, -15, 0.5)
     mars.setLegAngle(2, 2, -15, 0.5)
     mars.setLegAngle(3, 2, 25, 0.5)
     mars.setLegAngle(4, 2, 25, 0.5)
-    ap.sleep(0.2)
+    ai.actionplanner.ActionPlanner.sleep(0.2)
     mars.setLegAngle(1, 2, -10, 0.5)
     mars.setLegAngle(2, 2, -10, 0.5)
     mars.setLegAngle(3, 2, 20, 0.5)
     mars.setLegAngle(4, 2, 20, 0.5)
-    ap.sleep(0.2)
+    ai.actionplanner.ActionPlanner.sleep(0.2)
 
 def retreat(mars):
     mars.setLegAngle(1, 2, -15, 0.5)
     mars.setLegAngle(2, 2, -15, 0.5)
     mars.setLegAngle(3, 2, 25, 0.5)
     mars.setLegAngle(4, 2, 25, 0.5)
-    ap.sleep(0.2)
+    ai.actionplanner.ActionPlanner.sleep(0.2)
     mars.setLegAngle(1, 2, -20, 0.5)
     mars.setLegAngle(2, 2, -20, 0.5)
     mars.setLegAngle(3, 2, 30, 0.5)
     mars.setLegAngle(4, 2, 30, 0.5)
-    ap.sleep(0.2)
+    ai.actionplanner.ActionPlanner.sleep(0.2)
 
 def touchHead(mars, times=4):
     move_head_tail(mars, times)
@@ -63,25 +63,25 @@ def touchBody(mars, times=3):
         mars.setLegAngle(1, 3, 110, get_rand_speed(0.1, 0.3))
         mars.setLegAngle(2, 2, -30, get_rand_speed(0.1, 0.3))
         mars.setLegAngle(2, 3, 110, get_rand_speed(0.1, 0.3))
-        ap.sleep(0.5)
+        ai.actionplanner.ActionPlanner.sleep(0.5)
 
         mars.setLegAngle(1, 3, 90, get_rand_speed(0.1, 0.3))
         mars.setLegAngle(2, 3, 90, get_rand_speed(0.1, 0.3))
         mars.setLegAngle(1, 2, -40, get_rand_speed(0.1, 0.3))
         mars.setLegAngle(2, 2, -40, get_rand_speed(0.1, 0.3))
 
-        ap.sleep(0.5)
+        ai.actionplanner.ActionPlanner.sleep(0.5)
 
     mars.setHeadAngle(1, get_rand_angle(40), 0.2)
     mars.setHeadAngle(1, get_rand_angle(-20), 0.2)
     mars.setHeadAngle(2, get_rand_angle(20), 0.2)
-    ap.sleep(0.5)
+    ai.actionplanner.ActionPlanner.sleep(0.5)
     mars.setHeadAngle(1, get_rand_angle(60), 0.1)
     mars.setHeadAngle(2, get_rand_angle(0), 0.1)
-    ap.sleep(0.5)
+    ai.actionplanner.ActionPlanner.sleep(0.5)
     mars.setHeadAngle(1, get_rand_angle(10), 0.2)
     mars.setHeadAngle(2, get_rand_angle(0), 0.2)
-    ap.sleep(0.5)
+    ai.actionplanner.ActionPlanner.sleep(0.5)
 
 def main(mars, times, port):
     """

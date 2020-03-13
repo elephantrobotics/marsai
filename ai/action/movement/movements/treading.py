@@ -1,17 +1,17 @@
 import numpy as np
 from ai.action.movement.movements.basic import *
 from ai.action.movement.movements import sit
-from ai.actionplanner import ActionPlanner as ap
+import ai.actionplanner
 
 def main(mars, times=3, lookaround=True):
     sit.main(mars)
-    ap.sleep(0.2)
+    ai.actionplanner.ActionPlanner.sleep(0.2)
     treading(mars, times, lookaround=lookaround)
 
 
 def treading(mars, times=3, lookaround=True):  # 踩奶
     mars.setHeadAngle(1, -30, 0.5)
-    ap.sleep(0.5)
+    ai.actionplanner.ActionPlanner.sleep(0.5)
     head_Max1 = 50
     head_Min1 = -50
     head_Max2 = 30
@@ -61,7 +61,7 @@ def treading(mars, times=3, lookaround=True):  # 踩奶
             rand_times = int(abs(np.random.normal(0, 2)) + 1)
             print("抬头")
             LookAround(mars, rand_times, head_Max1, head_Min1, head_Max2, head_Min2)
-            ap.sleep(1)
+            ai.actionplanner.ActionPlanner.sleep(1)
             mars.setHeadAngle(1, -30, 0.5)
             mars.setHeadAngle(2, 0, 0.5)
 
@@ -80,19 +80,19 @@ def treadingSitInit(mars):
     mars.setLegAngle(3, 1, -10, 0.4)
     mars.setLegAngle(1, 3, 40, 0.4)
     mars.setLegAngle(3, 3, 40, 0.4)
-    ap.sleep(0.5)
+    ai.actionplanner.ActionPlanner.sleep(0.5)
 
     mars.setLegAngle(2, 2, 30, 0.4)
     mars.setLegAngle(4, 2, 30, 0.4)
     mars.setLegAngle(2, 3, -90, 0.4)
     mars.setLegAngle(4, 3, -90, 0.4)
-    ap.sleep(0.5)
+    ai.actionplanner.ActionPlanner.sleep(0.5)
 
     mars.setLegAngle(1, 2, 0, 0.4)
     mars.setLegAngle(3, 2, 0, 0.4)
     mars.setLegAngle(1, 3, 0, 0.4)
     mars.setLegAngle(3, 3, 0, 0.4)
-    ap.sleep(0.5)
+    ai.actionplanner.ActionPlanner.sleep(0.5)
 
     mars.setLegAngle(2, 2, 50, 0.4)
     mars.setLegAngle(4, 2, 50, 0.4)
@@ -103,7 +103,7 @@ def treadingSitInit(mars):
     mars.setLegAngle(3, 2, 0, 0.4)
     mars.setLegAngle(1, 3, 0, 0.4)
     mars.setLegAngle(3, 3, 0, 0.4)
-    ap.sleep(1)
+    ai.actionplanner.ActionPlanner.sleep(1)
 
 
 def treadingSitLeft(mars, speed):
@@ -112,13 +112,13 @@ def treadingSitLeft(mars, speed):
     mars.setLegAngle(1, 3, 80, speed)
     mars.setLegAngle(3, 2, 0, speed)
     mars.setLegAngle(3, 3, 0, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
     mars.setLegAngle(1, 2, 0, speed)
     mars.setLegAngle(1, 3, 0, speed)
     mars.setLegAngle(3, 2, 0, speed)
     mars.setLegAngle(3, 3, 0, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
 
 def treadingSitRight(mars, speed):
@@ -128,13 +128,13 @@ def treadingSitRight(mars, speed):
     mars.setLegAngle(1, 3, 0, speed)
     mars.setLegAngle(3, 2, -55, speed)
     mars.setLegAngle(3, 3, 80, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
     mars.setLegAngle(1, 2, 0, speed)
     mars.setLegAngle(1, 3, 0, speed)
     mars.setLegAngle(3, 2, 0, speed)
     mars.setLegAngle(3, 3, 0, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
 
 def treadingStandInit(mars):
@@ -152,7 +152,7 @@ def treadingStandInit(mars):
     mars.setLegAngle(4, 2, 20, 0.3)
     mars.setLegAngle(2, 3, -90, 0.3)
     mars.setLegAngle(4, 3, -90, 0.3)
-    ap.sleep(1)
+    ai.actionplanner.ActionPlanner.sleep(1)
     """
 
 
@@ -162,13 +162,13 @@ def treadingStandLeft(mars, speed):
     mars.setLegAngle(1, 3, 110, speed)
     mars.setLegAngle(3, 2, -60, speed)
     mars.setLegAngle(3, 3, 90, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
     mars.setLegAngle(1, 2, -60, speed)
     mars.setLegAngle(1, 3, 90, speed)
     mars.setLegAngle(3, 2, -60, speed)
     mars.setLegAngle(3, 3, 90, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
 
 def treadingStandRight(mars, speed):
@@ -177,13 +177,13 @@ def treadingStandRight(mars, speed):
     mars.setLegAngle(1, 3, 90, speed)
     mars.setLegAngle(3, 2, -80, speed)
     mars.setLegAngle(3, 3, 110, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
     mars.setLegAngle(1, 2, -60, speed)
     mars.setLegAngle(1, 3, 90, speed)
     mars.setLegAngle(3, 2, -60, speed)
     mars.setLegAngle(3, 3, 90, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
 
 def treadingDownInit(mars):
@@ -203,7 +203,7 @@ def treadingDownInit(mars):
     mars.setLegAngle(4, 3, -30, 0.3)
     """
 
-    ap.sleep(1)
+    ai.actionplanner.ActionPlanner.sleep(1)
 
 
 def treadingDownLeft(mars, speed):
@@ -212,15 +212,15 @@ def treadingDownLeft(mars, speed):
     mars.setLegAngle(1, 3, 40, speed)
     mars.setLegAngle(3, 2, 50, speed)
     mars.setLegAngle(3, 3, 40, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
     mars.setLegAngle(1, 2, 80, speed)
     mars.setLegAngle(1, 3, 20, speed)
     mars.setLegAngle(3, 2, 50, speed)
     mars.setLegAngle(3, 3, 40, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
     mars.setLegAngle(1, 3, 0, 0.5)
-    ap.sleep(0.3)
+    ai.actionplanner.ActionPlanner.sleep(0.3)
 
 
 def treadingDownRight(mars, speed):
@@ -229,12 +229,12 @@ def treadingDownRight(mars, speed):
     mars.setLegAngle(1, 3, 40, speed)
     mars.setLegAngle(3, 2, 50, speed)
     mars.setLegAngle(3, 3, 40, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
 
     mars.setLegAngle(1, 2, 50, speed)
     mars.setLegAngle(1, 3, 40, speed)
     mars.setLegAngle(3, 2, 80, speed)
     mars.setLegAngle(3, 3, 20, speed)
-    ap.sleep(delay)
+    ai.actionplanner.ActionPlanner.sleep(delay)
     mars.setLegAngle(3, 3, 0, 0.5)
-    ap.sleep(0.3)
+    ai.actionplanner.ActionPlanner.sleep(0.3)

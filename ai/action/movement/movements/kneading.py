@@ -1,7 +1,7 @@
 import numpy as np
 from ai.action.movement.movements.basic import *
 from ai.action.movement.movements.sit import *
-from ai.actionplanner import ActionPlanner as ap
+import ai.actionplanner
 
 def kneading(mars, times=6):
     sit(mars)
@@ -26,20 +26,20 @@ def kneading(mars, times=6):
         mars.setLegAngle(2, 1, -j1_angles, _speed)
         mars.setLegAngle(3, 1, j1_angles, _speed)
         mars.setLegAngle(4, 1, -j1_angles, _speed)
-        ap.sleep(0.2)
+        ai.actionplanner.ActionPlanner.sleep(0.2)
 
         move_head_tail(mars,1,0)
 
         mars.setLegAngle(leg_num, 2, angle_2_ges1, _speed)
         mars.setLegAngle(leg_num, 3, angle_3_ges1, _speed)
-        ap.sleep(0.6)
+        ai.actionplanner.ActionPlanner.sleep(0.6)
 
         mars.setLegAngle(leg_num, 2, angle_2_ges2, _speed)
         mars.setLegAngle(leg_num, 3, angle_3_ges2, _speed)
         move_head_tail(mars,1,0)
 
-        ap.sleep(0.6)
+        ai.actionplanner.ActionPlanner.sleep(0.6)
 
         mars.setLegAngle(leg_num, 2, angle_2_ges1, _speed*0.8)
         mars.setLegAngle(leg_num, 3, angle_3_ges1, _speed*0.8)
-        ap.sleep(0.6)
+        ai.actionplanner.ActionPlanner.sleep(0.6)

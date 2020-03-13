@@ -3,7 +3,7 @@
 import threading
 import time
 from Parameters import *
-from action.movement.movement import Movements
+import action.movement.movement
 from action.sound.mp3player import *
 from action.eyedisplay.eyedisplay import *
 
@@ -15,7 +15,7 @@ global t
 t = None
 
 class ActionPlanner:
-    mars = Movements()
+    mars = action.movement.movement.Movements()
 
     def __init__(self):
         self.data = 0

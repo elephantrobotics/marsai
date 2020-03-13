@@ -1,7 +1,7 @@
 import numpy as np
 from ai.action.movement.movements.basic import *
 from ai.action.movement.movements.sit import *
-from ai.actionplanner import ActionPlanner as ap
+import ai.actionplanner
 
 def get_rand_angle(angle):
     if angle > 80:
@@ -18,7 +18,7 @@ def get_rand_angle(angle):
 
 def get_rand_delay_time(min_time, max_time):
     rand_delay_time = abs(float(str(np.random.uniform(min_time, max_time))[:4]))
-    ap.sleep(rand_delay_time)
+    ai.actionplanner.ActionPlanner.sleep(rand_delay_time)
 
 
 def get_rand_speed(min_speed, max_speed):
@@ -40,7 +40,7 @@ def prone(mars):  # 趴下
     mars.setLegAngle(4, 1, 0, 0.5)
     mars.setLegAngle(4, 2, 50, 0.5)
     mars.setLegAngle(4, 3, 110, 0.5)
-    ap.sleep(1)
+    ai.actionplanner.ActionPlanner.sleep(1)
 
 
 def fullStretch(mars):  # 全伸展
@@ -50,7 +50,7 @@ def fullStretch(mars):  # 全伸展
     mars.setLegAngle(1, 3, -30, 0.3)
     mars.setLegAngle(2, 2, 80, 0.3)
     mars.setLegAngle(2, 3, -30, 0.3)
-    ap.sleep(1)
+    ai.actionplanner.ActionPlanner.sleep(1)
     # 右前腿伸直
 
     # 前腿下压，后腿上抬，同时抬头
@@ -58,7 +58,7 @@ def fullStretch(mars):  # 全伸展
     mars.setLegAngle(1, 3, 0, 0.5)
     mars.setLegAngle(2, 2, 80, 0.5)
     mars.setLegAngle(2, 3, 0, 0.5)
-    ap.sleep(4)
+    ai.actionplanner.ActionPlanner.sleep(4)
 
     # 后腿先抬
     rand_speed_1 = get_rand_speed(0.2, 0.7)
@@ -102,7 +102,7 @@ def kneading1(mars, times=3):
     mars.setLegAngle(3, 3, -60, _speed)
     mars.setLegAngle(4, 2, 10, _speed)
     mars.setLegAngle(4, 3, -60, _speed)
-    ap.sleep(1)
+    ai.actionplanner.ActionPlanner.sleep(1)
 
     for i in range(3):
         leg_num = _sig
@@ -118,14 +118,14 @@ def kneading1(mars, times=3):
         if leg_num == 3: leg_num = 2
         mars.setLegAngle(leg_num, 2, angle_2_ges1, _speed)
         mars.setLegAngle(leg_num, 3, angle_3_ges1, _speed)
-        ap.sleep(0.5)
+        ai.actionplanner.ActionPlanner.sleep(0.5)
 
         mars.setLegAngle(leg_num, 2, angle_2_ges2, _speed)
         mars.setLegAngle(leg_num, 3, angle_3_ges2, _speed)
-        ap.sleep(0.5)
+        ai.actionplanner.ActionPlanner.sleep(0.5)
         
         mars.setLegAngle(leg_num, 2, angle_2_ges1, _speed*0.7)
         mars.setLegAngle(leg_num, 3, angle_3_ges1, _speed*0.7)
-        ap.sleep(0.6)
+        ai.actionplanner.ActionPlanner.sleep(0.6)
         
 

@@ -6,7 +6,7 @@ import action.eyedisplay.OLED_Driver as OLED
 
 from PIL import Image, ImageDraw, ImageFont
 
-from ai.actionplanner import ActionPlanner as ap
+import ai.actionplanner
 
 DEFAULT_SP = 0.01   # default speed / time seg
 ENJOY_SP = 0.06
@@ -106,7 +106,7 @@ class EyeDisplay:
             while i < sz:
                 self.display_eye(ls[i])
                 i+=1
-                ap.sleep(timesleep)
+                ai.actionplanner.ActionPlanner.sleep(timesleep)
            
     def enjoy(self):
         a = random.random()
@@ -116,7 +116,7 @@ class EyeDisplay:
         if a > 0.35:
             self.eye_move_to(NEARLY_CLOSE, ENJOY_SP)
             self.eye_move_to(CLOSE, ENJOY_SP)
-        ap.sleep(b)
+        ai.actionplanner.ActionPlanner.sleep(b)
         
     def random_move(self):
         a = random.random()
@@ -129,7 +129,7 @@ class EyeDisplay:
         else:
             b = int(random.random()*3)
             self.blink(b)
-        ap.sleep(c)
+        ai.actionplanner.ActionPlanner.sleep(c)
 
 
 
@@ -138,12 +138,12 @@ a = EyeDisplay('blue')
 
 
 a.enjoy()
-ap.sleep(2)
+ai.actionplanner.ActionPlanner.sleep(2)
 
 while 1:
     a.random_move()
     #a.enjoy()
-    ap.sleep(0.5)
+    ai.actionplanner.ActionPlanner.sleep(0.5)
     pass
 
 '''

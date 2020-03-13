@@ -34,6 +34,13 @@ class VoiceFeatureGenerator:
                              args=(self.speak_queue, decoder, command))
         p.start()
 
+    def start_voice(self):
+        while True:
+            ft = self.generate_voice_feature()
+            if ft is not None:
+                if ft.data['word'] != '':
+                    print(ft)
+
     def generate_voice_feature(self):
         ft = Feature()
         ft.type = 20
@@ -91,3 +98,6 @@ def test_voicefeaturegenerator():
         if ft is not None:
             if ft.data['word'] != '':
                 print(ft)
+
+if __name__ == '__main__':
+    VoiceFeatureGenerator().start_voice()

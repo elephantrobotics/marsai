@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import numpy as np
 import random
-from ai.actionplanner import ActionPlanner as ap
+import ai.actionplanner
 
 angry_td = 1.2  #time delay
 purr_td = 1.75
@@ -36,7 +36,7 @@ class MP3PlayClass:
             else:
                 GPIO.output(self.IOlist[i], GPIO.HIGH)
             audio_Num >>= 1
-        ap.sleep(0.05)
+        ai.actionplanner.ActionPlanner.sleep(0.05)
         for i in range(5):
             GPIO.output(self.IOlist[i], GPIO.HIGH)
     
@@ -47,7 +47,7 @@ class MP3PlayClass:
         angry_mp3_index = angry_mp3_ls[intensity]
         
         self.setplayer(angry_mp3_index)
-        ap.sleep(angry_td)
+        ai.actionplanner.ActionPlanner.sleep(angry_td)
         
     def purr(self, intensity = 0):  # intensity can be 0,1
         purr_mp3_index = 6
@@ -55,7 +55,7 @@ class MP3PlayClass:
         
         for i in purr_times:
             self.setplayer(purr_mp3_index)
-            ap.sleep(purr_td)
+            ai.actionplanner.ActionPlanner.sleep(purr_td)
         
     def meow(self,intensity = 0, tp ='quick',):
         
@@ -68,12 +68,12 @@ class MP3PlayClass:
         i = int(np.random.random()*2)   # choice 2
         
         self.setplayer(meow_mp3_index[i])
-        ap.sleep(meow_td)
+        ai.actionplanner.ActionPlanner.sleep(meow_td)
         
     def ha(self, intensity= 0):
         ha_mp3_index = 4
         self.setplayer(ha_mp3_index)
-        ap.sleep(ha_td)
+        ai.actionplanner.ActionPlanner.sleep(ha_td)
 
 '''
 mp3 = MP3PlayClass()
@@ -88,8 +88,8 @@ while True:
         
         
         
-        ap.sleep(2)
-    ap.sleep(4)
+        ai.actionplanner.ActionPlanner.sleep(2)
+    ai.actionplanner.ActionPlanner.sleep(4)
 
 '''
     
