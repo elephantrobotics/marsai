@@ -15,14 +15,15 @@ global t
 t = None
 
 class ActionPlanner:
+    mars = Movements()
+
     def __init__(self):
         self.data = 0
-        self.mars = Movements()
         self.mp3 = MP3PlayClass()
         self.screen = EyeDisplay()
 
-    @classmethod
-    def sleep(cls, delay_time=0.5):
+    @staticmethod
+    def sleep(delay_time=0.5):
         MIN_DELAY = 0.05
         if (delay_time <= MIN_DELAY):
             time.sleep(delay_time)
@@ -32,7 +33,7 @@ class ActionPlanner:
         while time.time() < stop_time:
             if need_stop:
                 print("Action Aborted")
-                cls.mars.set_stop()
+                ActionPlanner.mars.set_stop()
                 raise Exception("Exit exception")
             print("Action running")
             current_sleep_time = stop_time - time.time()
@@ -90,47 +91,47 @@ class ActionPlanner:
             # make sound
 
         elif action == 'flap_obj':
-            self.mars.set_obj_flap()
+            ActionPlanner.mars.set_obj_flap()
 
         elif action == 'pre_attack':
-            self.mars.set_obj_attack()
+            ActionPlanner.mars.set_obj_attack()
 
         # move
         elif action == 'walk':
-            self.mars.set_walk()
+            ActionPlanner.mars.set_walk()
 
         elif action == 'run':
-            self.mars.set_run()
+            ActionPlanner.mars.set_run()
 
         elif action == 'turn':
             i = int(np.random.random()*2)
-            self.mars.turn(i)
+            ActionPlanner.mars.turn(i)
             self.sleep(2)
-            self.mars.set_stop()
+            ActionPlanner.mars.set_stop()
 
         # relax
         elif action == 'lie_down':
-            self.mars.set_liedown()
+            ActionPlanner.mars.set_liedown()
             self.mp3.meow(0,'quick')
 
         elif action == 'sit':
-            self.mars.set_sit()
+            ActionPlanner.mars.set_sit()
 
         elif action == 'stand':
-            self.mars.set_stand()
+            ActionPlanner.mars.set_stand()
 
         # play
         elif action == 'stretch':
-            self.mars.set_stand()
-            self.mars.set_stretch()
+            ActionPlanner.mars.set_stand()
+            ActionPlanner.mars.set_stretch()
             self.mp3.meow(0,'long')
 
         elif action == 'knead':
-            self.mars.set_knead()
+            ActionPlanner.mars.set_knead()
             self.mp3.meow(0,'long')
 
         elif action == 'lick':
-            self.mars.set_licking()
+            ActionPlanner.mars.set_licking()
             self.mp3.meow(0,'quick')
 
         # voice
@@ -152,7 +153,7 @@ class ActionPlanner:
             pass
 
         elif action == 'walk_towards':
-            self.mars.set_walk()
+            ActionPlanner.mars.set_walk()
 
 
         elif action == 'start_listen':
@@ -160,10 +161,10 @@ class ActionPlanner:
 
         # others
         elif action == 'stop':
-            self.mars.set_stop()
+            ActionPlanner.mars.set_stop()
 
         elif action == "gap":
-            self.mars.move_head_tail()
+            ActionPlanner.mars.move_head_tail()
 
         else:
             pass
@@ -171,7 +172,7 @@ class ActionPlanner:
         self.sleep(5)
 
     def process_touch(self, position, data=''):
-        self.mars.set_person_touch(position)
+        ActionPlanner.mars.set_person_touch(position)
 
     def process_vision(self, type, data):
         pass

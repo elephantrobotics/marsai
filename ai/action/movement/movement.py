@@ -22,8 +22,6 @@ from ai.action.movement.movements import stretch
 from ai.action.movement.movements import basic
 from ai.action.movement.movements import kneading
 
-from ai.actionplanner import ActionPlanner as ap
-
 class Movements:
     def __init__(self):
 

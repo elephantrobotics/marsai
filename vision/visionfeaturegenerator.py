@@ -105,5 +105,5 @@ class VisionFeatureGenerator:
             sock.close()
 
 
-def test_vision():
+if __name__ == '__main__':
     VisionFeatureGenerator().start_vision()

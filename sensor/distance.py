@@ -12,6 +12,8 @@
 
 import time
 from VL530L0XP.python import VL53L0X
+import sys
+sys.path.append(".")
 from ai.actionplanner import ActionPlanner as ap
 
 class Distance:
