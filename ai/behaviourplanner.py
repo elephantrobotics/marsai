@@ -4,6 +4,9 @@ from Parameters import *
 import numpy as np
 import copy
 
+import sys
+sys.path.append(".")
+import ai.actionplanner
 from EnergyPlanner import EnergyClass
 
 # get/set/update/check/
@@ -84,6 +87,9 @@ class BehaviourPlanner:
 
 		print ('3 behaviour ' + behaviour)
 		print ('4 time left ' + str(self.last_behaviour_time_left))
+		if self.last_behaviour_time_left <= 5:
+			ai.actionplanner.ActionPlanner.need_stop = True
+			ai.actionplanner.ActionPlanner.need_start = True
 		print ('---')
 		return behaviour,processed_data
 			

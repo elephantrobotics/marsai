@@ -5,13 +5,15 @@ import json
 
 from featurequeue import *
 
+import sys
+sys.path.append(".")
 from modelclassifier import ModelClassifier
 from behaviourplanner import BehaviourPlanner
-import actionplanner
+import ai.actionplanner
 
 MC = ModelClassifier()
 BP = BehaviourPlanner()
-AP = actionplanner.ActionPlanner()
+AP = ai.actionplanner.ActionPlanner()
 
 def getRandNum(num_type=0):
     # 0 is for random

@@ -7,14 +7,12 @@ import action.movement.movement
 from action.sound.mp3player import *
 from action.eyedisplay.eyedisplay import *
 
-global need_stop
-need_stop = False
-global need_start
-need_start = True
 global t
 t = None
 
 class ActionPlanner:
+    need_stop = False
+    need_start = True
     mars = action.movement.movement.Movements()
 
     def __init__(self):
@@ -27,47 +25,46 @@ class ActionPlanner:
         MIN_DELAY = 0.05
         if (delay_time <= MIN_DELAY):
             time.sleep(delay_time)
-        global need_stop
-        print("Action Started")
+        # print("Action Started")
         stop_time = time.time() + delay_time
         while time.time() < stop_time:
-            if need_stop:
+            if ActionPlanner.need_stop:
                 print("Action Aborted")
                 ActionPlanner.mars.set_stop()
                 raise Exception("Exit exception")
-            print("Action running")
+            # print("Action running")
             current_sleep_time = stop_time - time.time()
             if current_sleep_time > MIN_DELAY:
                 time.sleep(MIN_DELAY)
             else:
                 time.sleep(current_sleep_time)
-        print("Action completed")
+        # print("Action completed")
 
     def process_action(self, action, data=None):
-        global need_stop
-        global need_start
         global t
-        need_stop = True
-        t.join()
-        if need_start:
-            t = threading.Thread(target=process_action_thread,
+        print("process_action")
+        ActionPlanner.need_stop = True
+        if t is not None:
+            t.join()
+        if ActionPlanner.need_start:
+            t = threading.Thread(target=self.process_action_thread,
                     args=(action, data))
             t.start()
 
     def process_action_thread(self, action, data=None):
-        global need_start
-        global need_stop
-        need_start = False
+        print("process_action_thread")
+        ActionPlanner.need_start = False
 
         try:
             do_process_action(action, data)
         except:
             pass
         finally:
-            need_start = True
-            need_stop = False
+            ActionPlanner.need_start = True
+            ActionPlanner.need_stop = False
 
     def do_process_action(self, action, data=None):
+        print("do_process_action")
         print (action, data)
 
         self.screen.random_move()
