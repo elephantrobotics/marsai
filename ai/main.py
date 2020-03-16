@@ -7,7 +7,7 @@ from featurequeue import *
 
 from modelclassifier import ModelClassifier
 from behaviourplanner import BehaviourPlanner
-import ActionPlanner
+import actionplanner
 
 MC = ModelClassifier()
 BP = BehaviourPlanner()
