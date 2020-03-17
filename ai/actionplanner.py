@@ -56,7 +56,7 @@ class ActionPlanner:
         ActionPlanner.need_start = False
 
         try:
-            do_process_action(action, data)
+            self.do_process_action(action, data)
         except:
             pass
         finally:
