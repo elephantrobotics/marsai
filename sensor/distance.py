@@ -12,7 +12,8 @@
 
 import time
 from VL530L0XP.python import VL53L0X
-
+import sys
+sys.path.append(".")
 
 class Distance:
     def __init__(self):

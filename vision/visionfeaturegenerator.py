@@ -10,20 +10,17 @@
 # Using this MarsAI source code is subject to the terms and conditions
 # of Apache 2.0 License. Check LICENSE for more information
 
+import random
+import socket
+import time
+from datetime import datetime
+
+import sys
+sys.path.append(".")
 from vision import Vision
 from ai import common
 from ai.feature import Feature
 import ai.feature
-import random
-import socket
-import time
-
-from datetime import datetime
-
-# FIXME: dirty hack to import sibling modules (cause python imports do not work)
-import sys
-sys.path.append(".")
-
 
 class VisionFeatureGenerator:
 
@@ -108,5 +105,5 @@ class VisionFeatureGenerator:
             sock.close()
 
 
-def test_vision():
+if __name__ == '__main__':
     VisionFeatureGenerator().start_vision()

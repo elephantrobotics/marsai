@@ -10,21 +10,18 @@
 # Using this MarsAI source code is subject to the terms and conditions
 # of Apache 2.0 License. Check LICENSE for more information
 
-from voice import Voice
-from ai import common
-from ai.feature import Feature
 import random
 import socket
 import time
 import queue
 import threading
-
 from datetime import datetime
 
-# FIXME: dirty hack to import sibling modules (cause python imports do not work)
 import sys
 sys.path.append(".")
-
+from voice import Voice
+from ai import common
+from ai.feature import Feature
 
 class VoiceFeatureGenerator:
     def __init__(self):
@@ -36,6 +33,13 @@ class VoiceFeatureGenerator:
         p = threading.Thread(target=self.vc.speak_monitor,
                              args=(self.speak_queue, decoder, command))
         p.start()
+
+    def start_voice(self):
+        while True:
+            ft = self.generate_voice_feature()
+            if ft is not None:
+                if ft.data['word'] != '':
+                    print(ft)
 
     def generate_voice_feature(self):
         ft = Feature()
@@ -94,3 +98,6 @@ def test_voicefeaturegenerator():
         if ft is not None:
             if ft.data['word'] != '':
                 print(ft)
+
+if __name__ == '__main__':
+    VoiceFeatureGenerator().start_voice()

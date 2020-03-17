@@ -13,7 +13,6 @@
 import RPi.GPIO as GPIO
 import time
 
-
 class Touch:
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
