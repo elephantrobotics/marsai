@@ -80,12 +80,13 @@ class BehaviourPlanner:
             #print ('2.2 other move')
             self.update_last_behaviour(behaviour)
 
+        print('BP ---')
         print ('3 behaviour ' + behaviour)
         print ('4 time left ' + str(self.last_behaviour_time_left))
         if self.last_behaviour_time_left <= 5:
             ai.actionplanner.ActionPlanner.need_stop = True
             ai.actionplanner.ActionPlanner.need_start = True
-        print ('---')
+        print ('BP ---')
         return behaviour,processed_data
 
     def setLastBehaviour(self, behaviour):

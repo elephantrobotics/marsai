@@ -4,7 +4,6 @@ import json
 
 import sys
 sys.path.append(".")
-from ai.parameters import *
 from ai.featurequeue import *
 import ai.modelclassifier
 import ai.behaviourplanner
@@ -42,7 +41,7 @@ def process_data(input_dic):
     # 2nd - get behaviour
     action, data = BP.updateBehaviour(mode, data)
 
-    # 3rd - process action 
+    # 3rd - process action
     AP.process_action(action, data)
 
 FeatureQueue.start_server()
@@ -68,7 +67,7 @@ while (1):
     process_data(data_dic)
 
     #time.sleep(1)
-    print ("-----")
+    print ("MAIN -----")
 
     if ft is None:
         time.sleep(0.2)

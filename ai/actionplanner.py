@@ -7,8 +7,8 @@ import sys
 sys.path.append(".")
 from ai.parameters import *
 import ai.action.movement.movement
-from action.sound.mp3player import *
-from action.eyedisplay.eyedisplay import *
+from ai.action.sound.mp3player import *
+from ai.action.eyedisplay.eyedisplay import *
 
 global t
 t = None
