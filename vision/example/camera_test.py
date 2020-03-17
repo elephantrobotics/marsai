@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-
 import cv2
 import numpy as np
 import os
@@ -9,7 +8,6 @@ import serial
 from PIL import Image, ImageStat
 import math
 import time
-
 
 class FaceTraining():
     def __init__(self):
@@ -85,7 +83,6 @@ class FaceTraining():
         cam.release()
         cv2.destroyAllWindows()
         return Image.fromarray(img).convert('RGB'), len(faces)
-
 
 if __name__ == '__main__':
     face_training = FaceTraining()
