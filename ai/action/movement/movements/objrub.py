@@ -1,11 +1,13 @@
 import numpy as np
+
+import sys
+sys.path.append(".")
 from ai.action.movement.movements.basic import *
 from ai.action.movement.movements.poweron import *
 import ai.actionplanner
 
 def main(mars, times=5):
     rub_object(mars, times)
-
 
 def rub_object(mars, times):
     for i in range(times):

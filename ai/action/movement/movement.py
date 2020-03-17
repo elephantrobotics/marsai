@@ -1,5 +1,6 @@
-import sys
 import random
+
+import sys
 sys.path.append(".")
 
 from library.pyfirmata.pyfirmata import Arduino
@@ -24,7 +25,6 @@ from ai.action.movement.movements import kneading
 
 class Movements:
     def __init__(self):
-
         dev_index = '/dev/ttyUSB0'
         self.mars = Arduino(dev_index)
 
@@ -35,7 +35,6 @@ class Movements:
         speed = min(1, speed)
 
         self.speed = speed
-        pass
 
     # movability - walk/ run/ turn
     def set_walk(self, speed=-1):
@@ -56,7 +55,7 @@ class Movements:
     # rest
     def set_stand(self, times = 0):
         basic.stand(self.mars,times)
-    
+
     def set_sit(self, times = 0):
         sit.sit(self.mars, times)
 
@@ -65,7 +64,6 @@ class Movements:
         #squat.squat(self.mars, times)
 
     def set_liedown(self, times = 0):
-        
         liedown.lie_down(self.mars, times)
 
     # interaction - obj
@@ -160,4 +158,3 @@ while True:
     a.set_obj_attack()
     ap.sleep(2)
 '''
-

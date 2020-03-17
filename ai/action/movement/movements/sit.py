@@ -1,6 +1,7 @@
+import sys
+sys.path.append(".")
 from ai.action.movement.movements.poweron import *
 from ai.action.movement.movements.basic import *
-
 
 def move_foot(mars):
     rand_speed_one = get_rand_speed(0.4, 0.6)
@@ -24,7 +25,6 @@ def move_foot(mars):
     mars.setLegAngle(3, 2, -30, rand_speed_one)
     mars.setLegAngle(3, 3, 30, rand_speed_one)
 
-
 def sit(mars, times = 0):
     mars.setHeadAngle(1, 0, 0.5)  # 低头
 
@@ -35,14 +35,13 @@ def sit(mars, times = 0):
     mars.setLegAngle(2, 3, 40, rand_speed_one)
 
     rand_speed_two = get_rand_speed(0.3, 0.6)
-    
+
     mars.setLegAngle(3, 2, 30, rand_speed_two)
     mars.setLegAngle(4, 2, 30, rand_speed_two)
     mars.setLegAngle(3, 3, -90, rand_speed_two)
     mars.setLegAngle(4, 3, -90, rand_speed_two)
-    
-    move_head_tail(mars,1)
 
+    move_head_tail(mars,1)
 
     rand_speed_three = get_rand_speed(0.3, 0.6)
     mars.setLegAngle(1, 2, 0, rand_speed_three)
@@ -61,9 +60,5 @@ def sit(mars, times = 0):
     mars.setLegAngle(2, 2, 0, rand_speed_four)
     mars.setLegAngle(1, 3, 0, rand_speed_four)
     mars.setLegAngle(2, 3, 0, rand_speed_four)
-    
-    move_head_tail(mars,times+1)
-    
 
-    
-    
+    move_head_tail(mars,times+1)

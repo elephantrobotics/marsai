@@ -1,7 +1,9 @@
-from ai.action.movement.movements.basic import *
-from ai.action.movement.movements.poweron import *
 import numpy as np
 
+import sys
+sys.path.append(".")
+from ai.action.movement.movements.basic import *
+from ai.action.movement.movements.poweron import *
 
 def stand_in_three(mars):
     mars.setLegAngle(2, 1, 10, get_rand_speed(0.4, 0.6))
@@ -17,7 +19,6 @@ def stand_in_three(mars):
     # mars.setLegAngle(1, 2, 20, get_rand_speed(0.4, 0.6))
     mars.setLegAngle(1, 3, 30, get_rand_speed(0.4, 0.6))
     get_rand_delay_time(0.5, 0.8)
-
 
 def bury_litter(mars, times):
     """
@@ -41,7 +42,6 @@ def bury_litter(mars, times):
             # mars.setLegAngle(2, 2, 20, get_rand_speed(0.4, 0.6))
             mars.setLegAngle(1, 3, 30, get_rand_speed(0.4, 0.6))
             LookAround3(mars, 8, 40, -15, 20, -20)
-
 
 def main(mars, times=6):
     stand_in_three(mars)

@@ -3,6 +3,8 @@ import RPi.GPIO as GPIO
 import threading
 import copy
 
+import sys
+sys.path.append(".")
 import ai.actionplanner
 
 #SSD1351
@@ -40,7 +42,6 @@ SSD1351_CMD_HORIZSCROLL     = 0x96
 SSD1351_CMD_STOPSCROLL      = 0x9E
 SSD1351_CMD_STARTSCROLL     = 0x9F
 
-
 #color
 BLACK   = 0x0000
 BLUE    = 0x001F
@@ -53,7 +54,6 @@ WHITE   = 0xFFFF
 #buffer
 color_byte = [0x00, 0x00]
 color_fill_byte = [0x00, 0x00]*(SSD1351_WIDTH)
-
 
 #GPIO Set
 GPIO.setmode(GPIO.BCM)
@@ -73,7 +73,6 @@ GPIO.setup(OLED_CS_PIN, GPIO.OUT)
 SPI = spidev.SpiDev(0, 0)
 SPI.max_speed_hz = 22000000 #40000000
 SPI.mode = 0b00
-
 
 def Set_Color(color):
     color_byte[0] = (color >> 8) & 0xff
@@ -169,7 +168,6 @@ def Set_Coordinate(x, y):
     Write_Data(SSD1351_HEIGHT-1)
     Write_Command(SSD1351_CMD_WRITERAM)
 
-
 def Set_Address(column, row):
     Write_Command(SSD1351_CMD_SETCOLUMN)  
     Write_Data(column)  #X start 
@@ -205,82 +203,81 @@ def Draw_Pixel(x, y):
 
 def Delay(x):
     ai.actionplanner.ActionPlanner.sleep(x / 1000.0)
-	
+
 def Device_Init():
     OLED_CS(0)
     OLED_RST(0)
     Delay(500)
     OLED_RST(1)
     Delay(500)
-    
+
     Write_Command(0xfd)	# command lock
     Write_Data(0x12)
     Write_Command(0xfd)	# command lock
     Write_Data(0xB1)
-    
+
     Write_Command(0xae)	# display off
     Write_Command(0xa4)	# Normal Display mode
-    
+
     Write_Command(0x15)	# set column address
     Write_Data(0x00)    # column address start 00
     Write_Data(0x7f)    # column address end 95
     Write_Command(0x75)	# set row address
     Write_Data(0x00)    # row address start 00
     Write_Data(0x7f)    # row address end 63	
-    
+
     Write_Command(0xB3)
     Write_Data(0xFF)
-    
+
     Write_Command(0xCA)
     Write_Data(0x7F)
 
     Write_Command(0xa0)	# set re-map & data format
     Write_Data(0x74)    # Horizontal address increment
-    
+
     Write_Command(0xa1)	# set display start line
     Write_Data(0x00)    # start 00 line
-    
+
     Write_Command(0xa2)	# set display offset
     Write_Data(0x00)
-    
+
     Write_Command(0xAB)
     Write_Command(0x01)
-    
+
     Write_Command(0xB4)
     Write_Data(0xA0)
     Write_Data(0xB5)
     Write_Data(0x55)
-    
+
     Write_Command(0xC1)
     Write_Data(0xC8)
     Write_Data(0x80)
     Write_Data(0xC0)
-    
+
     Write_Command(0xC7)
     Write_Data(0x0F)
-    
+
     Write_Command(0xB1)
     Write_Data(0x32)
-    
+
     Write_Command(0xB2)
     Write_Data(0xA4)
     Write_Data(0x00)
     Write_Data(0x00)
-    
+
     Write_Command(0xBB)
     Write_Data(0x17)
-    
+
     Write_Command(0xB6)
     Write_Data(0x01)
-    
+
     Write_Command(0xBE)
     Write_Data(0x05)
-    
+
     Write_Command(0xA6)
-    
+
     Clear_Screen()
     Write_Command(0xaf)
-
 
 # Draw a horizontal line ignoring any screen rotation.
 def Draw_FastHLine(x, y, length):
@@ -301,10 +298,9 @@ def Draw_FastHLine(x, y, length):
     Write_Data(y)
     # fill!
     Write_Command(SSD1351_CMD_WRITERAM)
-    
+
     for i in range(0,length):
         Write_Datas(color_byte)
-
 
 def Draw_FastVLine(x, y, length):
     # Bounds check
@@ -328,24 +324,21 @@ def Draw_FastVLine(x, y, length):
     for i in range(0,length):
         Write_Datas(color_byte)
 
-
-
 def get_display_data(Image):
     buffer1 = Image.load()
-    
+
     a = []*SSD1351_WIDTH
 
     for j in range(0, SSD1351_WIDTH):
-        
+
         for i in range(0, SSD1351_HEIGHT):
             color_fill_byte[i*2] = ((buffer1[i,j][0] & 0xF8)|(buffer1[i,j][1] >> 5))
             color_fill_byte[i*2+1] = (((buffer1[i,j][1] << 3) & 0xE0)|(buffer1[i,j][2] >> 3))
         a.append(copy.deepcopy(color_fill_byte))
-        
+
     return a
 
 def display_data(data):
-    
     Set_Coordinate(0,0)
 
     for q in range(0, SSD1351_WIDTH):
@@ -355,7 +348,7 @@ def display_data(data):
 def Display_Image(Image):
     if(Image == None):
         return
-    
+
     Set_Coordinate(0,0)
     buffer1 = Image.load()
 
@@ -363,11 +356,8 @@ def Display_Image(Image):
         for i in range(0, SSD1351_HEIGHT):
             color_fill_byte[i*2] = ((buffer1[i,j][0] & 0xF8)|(buffer1[i,j][1] >> 5))
             color_fill_byte[i*2+1] = (((buffer1[i,j][1] << 3) & 0xE0)|(buffer1[i,j][2] >> 3))
-    
-   
+
     Write_Datas(color_fill_byte)
-    
-    
 
 def image_up(buffer1):
     for j in range(0, SSD1351_WIDTH//2):
@@ -376,22 +366,9 @@ def image_up(buffer1):
             color_fill_byte[i*2+1] = (((buffer1[i,j][1] << 3) & 0xE0)|(buffer1[i,j][2] >> 3))
         Write_Datas(color_fill_byte)
 
-
 def image_down(buffer1):
     for j in range((SSD1351_WIDTH//2)+1, SSD1351_WIDTH, -1):
         for i in range(0, SSD1351_HEIGHT):
             color_fill_byte[i*2] = ((buffer1[i,j][0] & 0xF8)|(buffer1[i,j][1] >> 5))
             color_fill_byte[i*2+1] = (((buffer1[i,j][1] << 3) & 0xE0)|(buffer1[i,j][2] >> 3))
         Write_Datas(color_fill_byte)
-            
-
-
-
-
-
-
-
-
-
-
-

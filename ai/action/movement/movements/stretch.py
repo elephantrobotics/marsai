@@ -1,3 +1,5 @@
+import sys
+sys.path.append(".")
 from ai.action.movement.movements.basic import *
 import ai.actionplanner
 
@@ -9,7 +11,6 @@ def main(mars, times=6):
         stretching(mars)
         #init(mars)
     stretchingEnd(mars)
-
 
 def stretchingInit(mars):
     mars.setHeadAngle(1, 20, speed_one)
@@ -71,8 +72,7 @@ def full_stretching(mars):
 def stretching(mars):
     speed_one = 0.3
     speed_two = 0.3
-    
-    
+
     # 向前伸懒腰
     # 左前腿伸直# 右前腿伸直
 
@@ -85,7 +85,7 @@ def stretching(mars):
     mars.setLegAngle(2, 3, -30, speed_two)
     ai.actionplanner.ActionPlanner.sleep(2)
     # 前腿下压，后腿上抬，同时抬头
-    
+
     mars.setLegAngle(1, 2, 70, speed_one)
     mars.setLegAngle(1, 3, 30, speed_one)
     mars.setLegAngle(2, 2, 70, speed_one)
@@ -97,7 +97,7 @@ def stretching(mars):
     mars.setLegAngle(4, 3, -30, speed_one)
     # 头左右晃动,然后回到正常
     move_head_tail(mars, 4)
-    
+
     # 向后伸懒腰
     # 前腿站立，后腿弯曲， 头回到正常
 
@@ -113,8 +113,6 @@ def stretching(mars):
     mars.setLegAngle(3, 3, -60, speed_two)
     mars.setLegAngle(4, 3, -60, speed_two)
     move_head_tail(mars, 2)
-
-
 
 def stretchingEnd(mars):
     mars.setHeadAngle(1, 20, speed_one)

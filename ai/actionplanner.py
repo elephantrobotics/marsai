@@ -2,8 +2,11 @@
 
 import threading
 import time
-from Parameters import *
-import action.movement.movement
+
+import sys
+sys.path.append(".")
+from ai.parameters import *
+import ai.action.movement.movement
 from action.sound.mp3player import *
 from action.eyedisplay.eyedisplay import *
 
@@ -13,7 +16,7 @@ t = None
 class ActionPlanner:
     need_stop = False
     need_start = True
-    mars = action.movement.movement.Movements()
+    mars = ai.action.movement.movement.Movements()
 
     def __init__(self):
         self.data = 0

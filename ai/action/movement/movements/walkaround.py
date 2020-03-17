@@ -1,3 +1,5 @@
+import sys
+sys.path.append(".")
 from ai.action.movement.movements.poweron import *
 
 def walk_around(mars):

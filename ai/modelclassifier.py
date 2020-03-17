@@ -1,7 +1,6 @@
-# -*- coding: UTF-8 -*-
-
-from Parameters import *
-
+import sys
+sys.path.append(".")
+from ai.parameters import *
 
 class ModelClassifier:
     def __init__(self):

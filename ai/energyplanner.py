@@ -1,5 +1,3 @@
-# -*- coding: UTF-8 -*-
-
 import math
 
 '''
@@ -14,7 +12,6 @@ class EnergyClass:
         self.energy = 100
         self.b = -9
         self.a = 0.2
-        pass
 
     def limitEnergy(self, _inputEnergy):
         _inputEnergy = min(100, _inputEnergy)
@@ -24,7 +21,6 @@ class EnergyClass:
     def decreaseEnergy(self, d_energy):
         self.energy -= d_energy
         self.energy = self.limitEnergy(self.energy)    # ensure the energy > 0 
-
 
     def getEnergy(self):
         self.energy = self.limitEnergy(self.energy)
@@ -47,7 +43,6 @@ class EnergyClass:
         # y = x * (-0.2x + 9)
         return input_x * (-self.a * input_x - self.b)
 
-
     def getIncreamentStep(self, input_value):
         current_x = self.getInverseTraj(input_value)
 
@@ -57,8 +52,3 @@ class EnergyClass:
         increa_step = next_y - input_value
 
         return increa_step
-
-
-
-
-

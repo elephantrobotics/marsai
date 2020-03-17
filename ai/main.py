@@ -1,27 +1,18 @@
 import numpy as np
 import time
-from Parameters import *
 import json
-
-from featurequeue import *
 
 import sys
 sys.path.append(".")
-from modelclassifier import ModelClassifier
-from behaviourplanner import BehaviourPlanner
+from ai.parameters import *
+from ai.featurequeue import *
+import ai.modelclassifier
+import ai.behaviourplanner
 import ai.actionplanner
 
-MC = ModelClassifier()
-BP = BehaviourPlanner()
+MC = ai.modelclassifier.ModelClassifier()
+BP = ai.behaviourplanner.BehaviourPlanner()
 AP = ai.actionplanner.ActionPlanner()
-
-def getRandNum(num_type=0):
-    # 0 is for random
-    # 1 is for normal
-    if num_type == 1:
-        return np.random.normal(0,1)
-    else:
-        return np.random.random()    # 0~1 percentage
 
 def process_data(input_dic):
     print (input_dic)

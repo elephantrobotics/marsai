@@ -1,4 +1,7 @@
 import numpy as np
+
+import sys
+sys.path.append(".")
 from ai.action.movement.movements.poweron import *
 import ai.actionplanner
 

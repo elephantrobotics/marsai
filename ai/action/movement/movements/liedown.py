@@ -1,3 +1,5 @@
+import sys
+sys.path.append(".")
 from ai.action.movement.movements.basic import *
 import ai.actionplanner
 

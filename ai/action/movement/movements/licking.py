@@ -1,4 +1,7 @@
 import numpy as np
+
+import sys
+sys.path.append(".")
 from ai.action.movement.movements.basic import *
 from ai.action.movement.movements.sit import *
 import ai.actionplanner

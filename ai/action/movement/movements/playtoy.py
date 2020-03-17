@@ -1,3 +1,5 @@
+import sys
+sys.path.append(".")
 from ai.action.movement.movements.basic import move_head
 from ai.action.movement.movements.poweron import *
 from ai.action.movement.movements.sit import *

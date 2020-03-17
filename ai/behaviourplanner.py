@@ -1,28 +1,25 @@
-# -*- coding: UTF-8 -*-
 import time
-from Parameters import *
 import numpy as np
 import copy
 
 import sys
 sys.path.append(".")
+import ai.parameters
 import ai.actionplanner
-from EnergyPlanner import EnergyClass
+import ai.energyplanner
 
 # get/set/update/check/
 # random.choice(d.keys())
 
 class BehaviourPlanner:
     def __init__(self):
-
-        self.energy = EnergyClass()
+        self.energy = ai.energyplanner.EnergyClass()
         self.last_behaviour = ''
         self.last_behaviour_count = 0
         self.last_behaviour_time_spend = 0
         self.last_behaviour_time_left = 0
 
         self.last_time = self.get_time()
-
 
     def get_time(self):
         return time.time()
@@ -31,8 +28,8 @@ class BehaviourPlanner:
         return self.get_time() - self.last_time
 
     def get_time_cons(self, behaviour):
-        if behaviour in TIME_MIN_CONS:
-            return TIME_MIN_CONS[behaviour]
+        if behaviour in ai.parameters.TIME_MIN_CONS:
+            return ai.parameters.TIME_MIN_CONS[behaviour]
         else:
             return 0
 
@@ -52,7 +49,7 @@ class BehaviourPlanner:
         # update behaviour count
         if self.last_behaviour == this_behaviour:
             self.last_behaviour_count +=1
-        
+
         # check times
         self.check_behaviour_times()
 
@@ -63,9 +60,7 @@ class BehaviourPlanner:
         if self.last_behaviour_count > 10:
             print ("too many times")
 
-    def updateBehaviour(self,input_mode, input_data):    
-
-
+    def updateBehaviour(self,input_mode, input_data):
         # 1 Pre-processBehaviour
         behaviour, processed_data = self.getBehaviourFromMode(input_mode, input_data)    # could be None
         #print ('1 initial behaviour ' + behaviour)
@@ -92,10 +87,8 @@ class BehaviourPlanner:
             ai.actionplanner.ActionPlanner.need_start = True
         print ('---')
         return behaviour,processed_data
-            
 
     def setLastBehaviour(self, behaviour):
-
         if (self.last_behaviour == behaviour):
             self.last_behaviour_count += 1
         else:
@@ -105,13 +98,12 @@ class BehaviourPlanner:
         pass
 
     def getBehaviourFromMode(self, input_mode, input_data):
-
         _behaviour = None
         _data = input_data
 
-        if input_mode == MODELS[0]:    # ds
+        if input_mode == ai.parameters.MODELS[0]:    # ds
             _behaviour = "run_away"
-        elif input_mode == MODELS[1]:    #tc
+        elif input_mode == ai.parameters.MODELS[1]:    #tc
             if input_data[0] == 1:
                 _behaviour = "touch_head"
             elif input_data[2] == 1:
@@ -119,19 +111,17 @@ class BehaviourPlanner:
             elif input_data[4] == 1:
                 _behaviour = "touch_back"
             pass
-        elif input_mode == MODELS[2]:    #voice
+        elif input_mode == ai.parameters.MODELS[2]:    #voice
             _behaviour = self.processVoice(input_data)
-        elif input_mode == MODELS[3]:    #vision
+        elif input_mode == ai.parameters.MODELS[3]:    #vision
             _behaviour,_data = self.processVision(input_data)
         else:
             _behaviour = self.processRandomBehaviour()
 
         return _behaviour, _data
 
-
-
     def processVoice(self,input_data):
-        '''            
+        '''
             1. kitten
             2. mars
             3. cat
@@ -146,7 +136,7 @@ class BehaviourPlanner:
             12 turn
             13 relax
             14 stop
-            15 come here    
+            15 come here
         '''
         command = input_data
         _behaviour = None
@@ -163,7 +153,7 @@ class BehaviourPlanner:
             pass
         elif command == "LOOK AT ME":     # look at me
             _behaviour = 'stare_at'
-            # look at me 
+            # look at me
             pass
         elif command == "SIT":     # Go to your charger
             _behaviour = 'sit'
@@ -179,13 +169,13 @@ class BehaviourPlanner:
             pass
         elif command == "RELAX":     # Are you sleepy?
             _behaviour = 'lie_down'
-            pass    
+            pass
         elif command == "STOP":     # Be quiet
             _behaviour = 'stop'
-            pass    
+            pass
         elif command == "COME HERE":     # Find your toy
             _behaviour = 'walk_towards'
-            pass    
+            pass
         else:
             _behaviour = "lower_sound"
             pass
@@ -193,10 +183,9 @@ class BehaviourPlanner:
         return _behaviour
 
     def processVision(self, input_data):
-        
-        if type(input_data) != dict or len(input_data)!= 1:    
+        if type(input_data) != dict or len(input_data)!= 1:
             return "error process vision", 0
-        
+
         command = ''
         for i in input_data:
             command = i
@@ -205,7 +194,7 @@ class BehaviourPlanner:
         _data = None
 
         if command == 'human':
-            _behaviour = BEHAVIOURS['ita_human'][self.getRand(4,2)]
+            _behaviour = ai.parameters.BEHAVIOURS['ita_human'][self.getRand(4,2)]
             _data = input_data[command][0][0] # coords
 
         elif command == 'qrcode':
@@ -221,7 +210,6 @@ class BehaviourPlanner:
             _data = input_data[command][1]    #coord
 
         return _behaviour,_data
-
 
     def processRandomBehaviour(self):
         _behaviour = None
@@ -245,10 +233,9 @@ class BehaviourPlanner:
             else:
                 _behaviour = 'run'
         else:                # play 
-            _behaviour = BEHAVIOURS['play'][self.getRand(4,3)]
+            _behaviour = ai.parameters.BEHAVIOURS['play'][self.getRand(4,3)]
 
         return _behaviour
-
 
     def getRand(self, num_type = 0, _data=0):
         # 0 is for random
@@ -268,17 +255,16 @@ class BehaviourPlanner:
             return 0
 
     def checkBehaviourInBehaviours(self,_behaviour, _behaviour_group):
-
         if type(_behaviour_group) is str: 
 
-            if _behaviour in BEHAVIOURS[_behaviour_group]:
+            if _behaviour in ai.parameters.BEHAVIOURS[_behaviour_group]:
                 return True
             else:
                 return False
         elif type(_behaviour_group) is list:
 
             for i in _behaviour_group:
-                if _behaviour in BEHAVIOURS[i]:
+                if _behaviour in ai.parameters.BEHAVIOURS[i]:
                     return True
             return False
         else:

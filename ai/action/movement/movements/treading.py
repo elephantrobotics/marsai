@@ -1,4 +1,7 @@
 import numpy as np
+
+import sys
+sys.path.append(".")
 from ai.action.movement.movements.basic import *
 from ai.action.movement.movements import sit
 import ai.actionplanner
@@ -7,7 +10,6 @@ def main(mars, times=3, lookaround=True):
     sit.main(mars)
     ai.actionplanner.ActionPlanner.sleep(0.2)
     treading(mars, times, lookaround=lookaround)
-
 
 def treading(mars, times=3, lookaround=True):  # 踩奶
     mars.setHeadAngle(1, -30, 0.5)
@@ -74,7 +76,6 @@ def treading(mars, times=3, lookaround=True):  # 踩奶
 
         count += 1
 
-
 def treadingSitInit(mars):
     mars.setLegAngle(1, 1, -10, 0.4)
     mars.setLegAngle(3, 1, -10, 0.4)
@@ -105,7 +106,6 @@ def treadingSitInit(mars):
     mars.setLegAngle(3, 3, 0, 0.4)
     ai.actionplanner.ActionPlanner.sleep(1)
 
-
 def treadingSitLeft(mars, speed):
     delay = (0.5 - speed) * 2 + 0.8
     mars.setLegAngle(1, 2, -55, speed)
@@ -119,7 +119,6 @@ def treadingSitLeft(mars, speed):
     mars.setLegAngle(3, 2, 0, speed)
     mars.setLegAngle(3, 3, 0, speed)
     ai.actionplanner.ActionPlanner.sleep(delay)
-
 
 def treadingSitRight(mars, speed):
     delay = (0.5 - speed) * 2 + 0.8
@@ -135,7 +134,6 @@ def treadingSitRight(mars, speed):
     mars.setLegAngle(3, 2, 0, speed)
     mars.setLegAngle(3, 3, 0, speed)
     ai.actionplanner.ActionPlanner.sleep(delay)
-
 
 def treadingStandInit(mars):
     mars.setLegAngle(1, 1, 0, 0.3)
@@ -155,7 +153,6 @@ def treadingStandInit(mars):
     ai.actionplanner.ActionPlanner.sleep(1)
     """
 
-
 def treadingStandLeft(mars, speed):
     delay = (0.3 - speed) + 1
     mars.setLegAngle(1, 2, -80, speed)
@@ -170,7 +167,6 @@ def treadingStandLeft(mars, speed):
     mars.setLegAngle(3, 3, 90, speed)
     ai.actionplanner.ActionPlanner.sleep(delay)
 
-
 def treadingStandRight(mars, speed):
     delay = (0.3 - speed) + 1
     mars.setLegAngle(1, 2, -60, speed)
@@ -184,7 +180,6 @@ def treadingStandRight(mars, speed):
     mars.setLegAngle(3, 2, -60, speed)
     mars.setLegAngle(3, 3, 90, speed)
     ai.actionplanner.ActionPlanner.sleep(delay)
-
 
 def treadingDownInit(mars):
     mars.setLegAngle(1, 1, 0, 0.3)
@@ -205,7 +200,6 @@ def treadingDownInit(mars):
 
     ai.actionplanner.ActionPlanner.sleep(1)
 
-
 def treadingDownLeft(mars, speed):
     delay = (0.3 - speed) + 1
     mars.setLegAngle(1, 2, 50, speed)
@@ -221,7 +215,6 @@ def treadingDownLeft(mars, speed):
     ai.actionplanner.ActionPlanner.sleep(delay)
     mars.setLegAngle(1, 3, 0, 0.5)
     ai.actionplanner.ActionPlanner.sleep(0.3)
-
 
 def treadingDownRight(mars, speed):
     delay = (0.3 - speed) + 1
