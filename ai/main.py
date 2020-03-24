@@ -4,7 +4,7 @@ import json
 
 import sys
 sys.path.append(".")
-from ai.featurequeue import *
+import ai.featurequeue
 import ai.modelclassifier
 import ai.behaviourplanner
 import ai.actionplanner
@@ -13,19 +13,19 @@ MC = ai.modelclassifier.ModelClassifier()
 BP = ai.behaviourplanner.BehaviourPlanner()
 AP = ai.actionplanner.ActionPlanner()
 
-def process_data(input_dic):
-    print (input_dic)
+def process_data(input_dict):
+    print (input_dict)
 
-    tc = input_dic['10']
-    vc = input_dic['20']
+    tc = input_dict['10']
+    vc = input_dict['20']
 
-    vs_human = input_dic['30']
-    vs_obj = input_dic['40']
+    vs_human = input_dict['30']
+    vs_obj = input_dict['40']
 
     vs = []
 
-    ds = input_dic['70']
-    ds = 400 # distance error, so need to clearify here
+    ds = input_dict['70']
+    ds = 400 # distance error, so need to clear here
 
     # process vision
     if len(vs_human) != 0:
@@ -36,41 +36,32 @@ def process_data(input_dic):
         pass
 
     # 1st - get mode
-    mode , data = MC.getMode([vs,vc,tc,ds])
+    mode, data = MC.get_mode([vs, vc, tc, ds])
 
     # 2nd - get behaviour
-    action, data = BP.updateBehaviour(mode, data)
+    action, data = BP.update_behaviour(mode, data)
 
     # 3rd - process action
     AP.process_action(action, data)
 
-FeatureQueue.start_server()
-time_seg_gap = 0.2
+ai.featurequeue.FeatureQueue.start_server()
+time_seg_duration = 0.2
+data_dict = {'10':[], '20':[],'30':[],'40':[],'70':[]}
 
-while (1):
+while True:
     time_start = time.time()
-    gap = -1
-
-    ft_list = []
-
-    data_dic = {'10':[], '20':[],'30':[],'40':[],'70':[]}
-
-    while gap < time_seg_gap:
-        gap = time.time() - time_start
-
-        ft = FeatureQueue.feature_queue.get()
-        ft_type_str = str(ft[1].type)
-        if ft_type_str in data_dic:
-            data_dic[ft_type_str] = ft[1].data
-        ft_list.append(ft)
-
-    process_data(data_dic)
-
-    #time.sleep(1)
     print ("MAIN -----")
+    curr_period = 0
 
-    if ft is None:
-        time.sleep(0.2)
-        continue
+    while curr_period < time_seg_duration:
+        curr_period = time.time() - time_start
 
-mars.stop()
+        ft = ai.featurequeue.FeatureQueue.feature_queue.get()
+        if ft is None:
+            time.sleep(0.2)
+            continue
+        ft_type_str = str(ft[1].type)
+        if ft_type_str in data_dict:
+            data_dict[ft_type_str] = ft[1].data
+
+    process_data(data_dict)

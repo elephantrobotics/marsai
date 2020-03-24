@@ -13,7 +13,7 @@ import ai.energyplanner
 
 class BehaviourPlanner:
     def __init__(self):
-        self.energy = ai.energyplanner.EnergyClass()
+        self.energy = ai.energyplanner.EnergyPlanner()
         self.last_behaviour = ''
         self.last_behaviour_count = 0
         self.last_behaviour_time_spend = 0
@@ -43,31 +43,22 @@ class BehaviourPlanner:
         self.update_last_time()
 
     def update_last_behaviour(self, this_behaviour):
-        # update time left
         self.last_behaviour_time_left = self.get_time_cons(this_behaviour)
-
-        # update behaviour count
         if self.last_behaviour == this_behaviour:
             self.last_behaviour_count +=1
-
-        # check times
         self.check_behaviour_times()
-
-        # udpate last behaviour to this behaviour
         self.last_behaviour = this_behaviour
 
     def check_behaviour_times(self):
         if self.last_behaviour_count > 10:
             print ("too many times")
 
-    def updateBehaviour(self,input_mode, input_data):
-        # 1 Pre-processBehaviour
-        behaviour, processed_data = self.getBehaviourFromMode(input_mode, input_data)    # could be None
+    def update_behaviour(self, input_mode, input_data):
+        behaviour, processed_data = self.get_behaviour_from_mode(input_mode, input_data)
         #print ('1 initial behaviour ' + behaviour)
         #print ('processed data' + str(processed_data))
 
-        # 2 directly use 
-        if self.checkBehaviourInBehaviours(behaviour, ['relax','move','play']):
+        if self.check_behaviour_in_behaviours(behaviour, ['relax', 'move', 'play']):
             #print ('2.1 in relax, move play')
             if self.last_behaviour_time_left > 0:
                 #print ('2.11 time left ' + str(self.last_behaviour_time_left))
@@ -80,29 +71,25 @@ class BehaviourPlanner:
             #print ('2.2 other move')
             self.update_last_behaviour(behaviour)
 
-        print('BP ---')
+        print('BP -->')
         print ('3 behaviour ' + behaviour)
         print ('4 time left ' + str(self.last_behaviour_time_left))
-        if self.last_behaviour_time_left <= 5:
-            ai.actionplanner.ActionPlanner.need_stop = True
-            ai.actionplanner.ActionPlanner.need_start = True
-        print ('BP ---')
-        return behaviour,processed_data
+        print ('BP -->')
+        return behaviour, processed_data
 
-    def setLastBehaviour(self, behaviour):
+    def set_last_behaviour(self, behaviour):
         if (self.last_behaviour == behaviour):
             self.last_behaviour_count += 1
         else:
             self.last_behaviour_count = 0
 
         self.last_behaviour = copy.deepcopy(behaviour)
-        pass
 
-    def getBehaviourFromMode(self, input_mode, input_data):
+    def get_behaviour_from_mode(self, input_mode, input_data):
         _behaviour = None
         _data = input_data
 
-        if input_mode == ai.parameters.MODELS[0]:    # ds
+        if input_mode == ai.parameters.MODELS[0]:      # ds
             _behaviour = "run_away"
         elif input_mode == ai.parameters.MODELS[1]:    #tc
             if input_data[0] == 1:
@@ -111,17 +98,16 @@ class BehaviourPlanner:
                 _behaviour = "touch_jaw"
             elif input_data[4] == 1:
                 _behaviour = "touch_back"
-            pass
         elif input_mode == ai.parameters.MODELS[2]:    #voice
-            _behaviour = self.processVoice(input_data)
+            _behaviour = self.process_voice(input_data)
         elif input_mode == ai.parameters.MODELS[3]:    #vision
-            _behaviour,_data = self.processVision(input_data)
+            _behaviour,_data = self.process_vision(input_data)
         else:
-            _behaviour = self.processRandomBehaviour()
+            _behaviour = self.process_random_behaviour()
 
         return _behaviour, _data
 
-    def processVoice(self,input_data):
+    def process_voice(self, input_data):
         '''
             1. kitten
             2. mars
@@ -183,7 +169,7 @@ class BehaviourPlanner:
 
         return _behaviour
 
-    def processVision(self, input_data):
+    def process_vision(self, input_data):
         if type(input_data) != dict or len(input_data)!= 1:
             return "error process vision", 0
 
@@ -195,7 +181,7 @@ class BehaviourPlanner:
         _data = None
 
         if command == 'human':
-            _behaviour = ai.parameters.BEHAVIOURS['ita_human'][self.getRand(4,2)]
+            _behaviour = ai.parameters.BEHAVIOURS['ita_human'][self.get_rand(4,2)]
             _data = input_data[command][0][0] # coords
 
         elif command == 'qrcode':
@@ -212,11 +198,11 @@ class BehaviourPlanner:
 
         return _behaviour,_data
 
-    def processRandomBehaviour(self):
+    def process_random_behaviour(self):
         _behaviour = None
 
-        _rad = self.getRand()
-        _rad_2 = self.getRand()
+        _rad = self.get_rand()
+        _rad_2 = self.get_rand()
 
         if _rad > 0.15:         # relax
             if _rad_2 > 0.75:    # sit
@@ -234,11 +220,11 @@ class BehaviourPlanner:
             else:
                 _behaviour = 'run'
         else:                # play 
-            _behaviour = ai.parameters.BEHAVIOURS['play'][self.getRand(4,3)]
+            _behaviour = ai.parameters.BEHAVIOURS['play'][self.get_rand(4,3)]
 
         return _behaviour
 
-    def getRand(self, num_type = 0, _data=0):
+    def get_rand(self, num_type = 0, _data=0):
         # 0 is for random
         # 1 is for normal
         # 4 is for choice / swtich
@@ -255,7 +241,7 @@ class BehaviourPlanner:
         else:
             return 0
 
-    def checkBehaviourInBehaviours(self,_behaviour, _behaviour_group):
+    def check_behaviour_in_behaviours(self,_behaviour, _behaviour_group):
         if type(_behaviour_group) is str: 
 
             if _behaviour in ai.parameters.BEHAVIOURS[_behaviour_group]:

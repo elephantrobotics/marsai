@@ -1,16 +1,18 @@
-import socketserver
 import json
 import queue
+import socketserver
+import threading
 import time
-from threading import Thread
 
-import common
-from feature import Feature
+import sys
+sys.path.append(".")
+import ai.common
+import ai.feature
 
 class TCPMessageHandler(socketserver.StreamRequestHandler):
     def handle(self):
         self.data = self.rfile.readline().strip()
-        self.feature = Feature.from_json(self.data)
+        self.feature = ai.feature.Feature.from_json(self.data)
         #print("{} wrote:".format(self.client_address[0]))
         #print(self.feature.to_json())
         FeatureQueue.put(self.feature)
@@ -24,7 +26,7 @@ class FeatureQueue():
         print("Binding address...")
         while True:
             try:
-                server = socketserver.TCPServer((common.HOST, common.PORT), TCPMessageHandler)
+                server = socketserver.TCPServer((ai.common.HOST, ai.common.PORT), TCPMessageHandler)
                 break
             except:
                 time.sleep(1)
@@ -38,7 +40,7 @@ class FeatureQueue():
 
     @staticmethod
     def start_server():
-        thread = Thread(target=FeatureQueue.start_server_sync)
+        thread = threading.Thread(target=FeatureQueue.start_server_sync)
         thread.start()
 
     @classmethod
@@ -46,7 +48,6 @@ class FeatureQueue():
         if cls.feature_queue.full():
             cls.feature_queue.queue.pop()
         cls.feature_queue.put((feature.type, feature), block=False)
-        #print(str(cls.feature_queue.qsize()) + ": " + str(cls.feature_queue.queue[0][1].to_json()))
 
     @classmethod
     def get(cls):
