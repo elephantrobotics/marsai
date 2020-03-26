@@ -1,4 +1,5 @@
 import random
+import subprocess
 
 import sys
 sys.path.append(".")
@@ -25,7 +26,8 @@ from ai.action.movement.movements import kneading
 
 class Movements:
     def __init__(self):
-        dev_index = '/dev/ttyUSB0'
+        dev_index = subprocess.run(['echo -n /dev/ttyUSB*'], stdout=subprocess.PIPE,
+                shell=True).stdout.decode('utf-8')
         self.mars = Arduino(dev_index)
 
         self.speed = 1

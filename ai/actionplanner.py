@@ -28,26 +28,23 @@ class ActionPlanner:
         MIN_DELAY = 0.05
         if (delay_time <= MIN_DELAY):
             time.sleep(delay_time)
-        # print("Action Started")
         stop_time = time.time() + delay_time
         while time.time() < stop_time:
             if ActionPlanner.need_stop:
                 print("Action Aborted")
                 ActionPlanner.mars.set_stop()
                 raise Exception("Exit exception")
-            # print("Action running")
             current_sleep_time = stop_time - time.time()
             if current_sleep_time > MIN_DELAY:
                 time.sleep(MIN_DELAY)
             else:
                 time.sleep(current_sleep_time)
-        # print("Action completed")
 
     def process_action(self, action, data=None):
         global t
-        print("process_action")
-        ActionPlanner.need_stop = True
         if t is not None:
+            if t.is_alive():
+                return
             t.join()
         if ActionPlanner.need_start:
             t = threading.Thread(target=self.process_action_thread,
@@ -55,7 +52,6 @@ class ActionPlanner:
             t.start()
 
     def process_action_thread(self, action, data=None):
-        print("process_action_thread")
         ActionPlanner.need_start = False
 
         try:
@@ -67,8 +63,7 @@ class ActionPlanner:
             ActionPlanner.need_stop = False
 
     def do_process_action(self, action, data=None):
-        print("do_process_action")
-        print (action, data)
+        print('AP.do_process_action(action=' + action + ', data=' + data + ')')
 
         self.screen.random_move()
 
@@ -170,6 +165,8 @@ class ActionPlanner:
             pass
 
         self.sleep(5)
+
+        print('AP.do_process_action ->')
 
     def process_touch(self, position, data=''):
         ActionPlanner.mars.set_person_touch(position)

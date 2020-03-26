@@ -45,7 +45,10 @@ class BehaviourPlanner:
     def update_last_behaviour(self, this_behaviour):
         self.last_behaviour_time_left = self.get_time_cons(this_behaviour)
         if self.last_behaviour == this_behaviour:
-            self.last_behaviour_count +=1
+            self.last_behaviour_count += 1
+        else:
+            self.last_behaviour_count = 0
+        ai.actionplanner.ActionPlanner.need_stop = True
         self.check_behaviour_times()
         self.last_behaviour = this_behaviour
 
@@ -55,8 +58,7 @@ class BehaviourPlanner:
 
     def update_behaviour(self, input_mode, input_data):
         behaviour, processed_data = self.get_behaviour_from_mode(input_mode, input_data)
-        #print ('1 initial behaviour ' + behaviour)
-        #print ('processed data' + str(processed_data))
+        print('BP(behaviour=' + behaviour + ', data=' + processed_data + ')')
 
         if self.check_behaviour_in_behaviours(behaviour, ['relax', 'move', 'play']):
             #print ('2.1 in relax, move play')
@@ -71,10 +73,7 @@ class BehaviourPlanner:
             #print ('2.2 other move')
             self.update_last_behaviour(behaviour)
 
-        print('BP -->')
-        print ('3 behaviour ' + behaviour)
-        print ('4 time left ' + str(self.last_behaviour_time_left))
-        print ('BP -->')
+        print('BP -> behaviour=' + behaviour + ', time_left=' + str(self.last_behaviour_time_left))
         return behaviour, processed_data
 
     def set_last_behaviour(self, behaviour):
